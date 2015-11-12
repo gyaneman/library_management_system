@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+//using JsonConfig;
 
 namespace LibraryManagementSystem
 {
@@ -31,7 +32,7 @@ namespace LibraryManagementSystem
             this.ConnectionClose();
         }
 
-        public void ConnectionOpen()
+        private void ConnectionOpen()
         {
             Console.WriteLine("DB Connecting...");
             _conn = new SQLiteConnection();
@@ -40,7 +41,7 @@ namespace LibraryManagementSystem
             Console.WriteLine("DB Connected.");
         }
 
-        public void ConnectionClose()
+        private void ConnectionClose()
         {
             Console.WriteLine("DB Closing...");
             _conn.Clone();
