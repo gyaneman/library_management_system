@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SQLite;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,7 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 //using JsonConfig;
+using LibraryManagementSystem.Models;
+using LibraryManagementSystem.Entities;
+
 
 namespace LibraryManagementSystem
 {
@@ -22,30 +25,19 @@ namespace LibraryManagementSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        static SQLiteConnection _conn = null;
-        string dbName = "c:\\Users\\kataoka\\Application\\dbdata\\sample.sqlite3";
-
+        Book book;
+        ObservableCollection<BookEntity> books;
         public MainWindow()
         {
             InitializeComponent();
-            this.ConnectionOpen();
-            this.ConnectionClose();
+            book = new Book();
+            var books = book.GetAllBooks();
+            Console.Write("num:" + books.Count);
         }
 
-        private void ConnectionOpen()
+        public void UpdateDataGrid()
         {
-            Console.WriteLine("DB Connecting...");
-            _conn = new SQLiteConnection();
-            _conn.ConnectionString = "Data Source=" + dbName + ";Version=3;";
-            _conn.Open();
-            Console.WriteLine("DB Connected.");
-        }
-
-        private void ConnectionClose()
-        {
-            Console.WriteLine("DB Closing...");
-            _conn.Clone();
-            Console.WriteLine("DB Closed.");
+            books = new ObservableCollection<BookEntity>(book.GetAllBooks());
         }
 
         public void dataGrid_SelectionChanged(object sender, EventArgs e)
