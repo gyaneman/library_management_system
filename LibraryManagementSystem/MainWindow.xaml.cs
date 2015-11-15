@@ -25,19 +25,27 @@ namespace LibraryManagementSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        Book book;
         ObservableCollection<BookEntity> books;
         public MainWindow()
         {
             InitializeComponent();
-            book = new Book();
-            var books = book.GetAllBooks();
-            Console.Write("num:" + books.Count);
+            //var books = Book.GetAllBooks();
+            //Console.Write("num:" + books.Count);
+            InsertBookTest();
+        }
+
+        public void InsertBookTest()
+        {
+            BookEntity book = new BookEntity();
+            book.Title = "エリック・エヴァンスのドメイン駆動設計";
+            book.Author = "Eric Evans";
+            book.Publisher = "翔泳社";
+            Book.Save(book);
         }
 
         public void UpdateDataGrid()
         {
-            books = new ObservableCollection<BookEntity>(book.GetAllBooks());
+            books = new ObservableCollection<BookEntity>(Book.GetAllBooks());
         }
 
         public void dataGrid_SelectionChanged(object sender, EventArgs e)

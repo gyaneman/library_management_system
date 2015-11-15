@@ -7,9 +7,15 @@ using System.Data.SQLite;
 
 namespace LibraryManagementSystem.Models
 {
+    enum Result
+    {
+        Success,
+        Failed
+    }
+
     class Model
     {
         static string dbPath = "c:\\Users\\kataoka\\Application\\dbdata\\library_management_system.sqlite3";
-        protected string dbConStr = "Data Source=" + dbPath + ";Version=3;";
+        protected static string dbConStr = "Data Source=" + dbPath + ";Version=3;";
     }
 }
