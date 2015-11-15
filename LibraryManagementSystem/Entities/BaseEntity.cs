@@ -52,18 +52,20 @@ namespace LibraryManagementSystem.Entities
             this.state = State.New;
         }
 
-        public BaseEntity(string id)
+        public BaseEntity(string _id, string _created_at, string _edited_at)
         {
-            this.id = id;
+            this.id = _id;
             this.state = State.Recorded;
+            this.created_at = _created_at;
+            this.edited_at = _edited_at;
         }
 
-        protected void UpdateEditedAt()
+        protected void Edited()
         {
             state = State.Edited;
         }
 
-        protected void Save()
+        protected void Update()
         {
             state = State.Recorded;
         }

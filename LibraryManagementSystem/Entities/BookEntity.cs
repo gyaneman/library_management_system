@@ -8,17 +8,18 @@ namespace LibraryManagementSystem.Entities
 {
     class BookEntity: BaseEntity
     {
-        private string isbn;
-        private string title;
-        private string author;
-        private string publisher;
+        private string isbn = null;
+        private string title = null;
+        private string author = null;
+        private string publisher = null;
+        private string series = null;
 
         public string Title
         {
             set
             {
                 this.title = value;
-                UpdateEditedAt();
+                Edited();
             }
             get
             {
@@ -31,7 +32,7 @@ namespace LibraryManagementSystem.Entities
             set
             {
                 this.isbn = value;
-                UpdateEditedAt();
+                Edited();
             }
             get
             {
@@ -44,7 +45,7 @@ namespace LibraryManagementSystem.Entities
             set
             {
                 this.author = value;
-                UpdateEditedAt();
+                Edited();
             }
             get
             {
@@ -57,7 +58,7 @@ namespace LibraryManagementSystem.Entities
             set
             {
                 this.publisher = value;
-                UpdateEditedAt();
+                Edited();
             }
             get
             {
@@ -65,13 +66,40 @@ namespace LibraryManagementSystem.Entities
             }
         }
 
+        public string Series
+        {
+            set
+            {
+                this.series = value;
+                Edited();
+            }
+            get
+            {
+                return this.series;
+            }
+        }
+
         public BookEntity():base()
         {
         }
 
-        public BookEntity(string id): base(id)
+        public BookEntity(
+            string _id,
+            string _isbn,
+            string _title, 
+            string _author, 
+            string _publisher,
+            string _series, 
+            string _created_at, 
+            string _edited_at)
+            : base(_id, _created_at, _edited_at)
         {
-            Console.WriteLine(id);
+            Console.WriteLine(_id);
+            this.isbn = _isbn;
+            this.title = _title;
+            this.author = _author;
+            this.publisher = _publisher;
+            this.series = _series;
         }
 
         public void Print()
