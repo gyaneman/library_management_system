@@ -7,7 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="555.029" Width="775.591">
     <Grid>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="504" Width="356" SelectionChanged="dataGrid_SelectionChanged"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="504" Width="748" ItemsSource="{Binding Path=books}"  AutoGenerateColumns="False" SelectionChanged="dataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" />
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+                <DataGridTextColumn Header="Author" Binding="{Binding Author}" />
+                <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}" />
+                <DataGridTextColumn Header="Series" Binding="{Binding Series}" />
+                <DataGridTextColumn Header="Created" Binding="{Binding CreatedAt}" />
+                <DataGridTextColumn Header="Edited" Binding="{Binding EditedAt}" />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

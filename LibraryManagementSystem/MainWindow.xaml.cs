@@ -20,18 +20,39 @@ using LibraryManagementSystem.Entities;
 
 namespace LibraryManagementSystem
 {
+    public class Person
+    {
+        public string first { get; set; } = "abc";
+        public string last { get; set; } = "def";
+    }
+
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<BookEntity> books;
+        ObservableCollection<BookEntity> booksToBeDisplayed;
+        public ObservableCollection<Person> people { get; set; } = new ObservableCollection<Person>();
+
         public MainWindow()
         {
             InitializeComponent();
-            //var books = Book.GetAllBooks();
-            //Console.Write("num:" + books.Count);
-            InsertBookTest();
+            var books = Book.GetAllBooks();
+            Console.Write("num:" + books.Count);
+            //InsertBookTest();
+            /*
+            people.Add(new Person());
+            people.Add(new Person());
+            people.Add(new Person());
+            people.Add(new Person());
+            people.Add(new Person());
+            people.Add(new Person());
+            people.Add(new Person());
+            people.Add(new Person());
+            */
+            //this.dataGrid.ItemsSource = people;
+            booksToBeDisplayed = new ObservableCollection<BookEntity>(books);
+            this.dataGrid.ItemsSource = booksToBeDisplayed;
         }
 
         public void InsertBookTest()
@@ -45,7 +66,7 @@ namespace LibraryManagementSystem
 
         public void UpdateDataGrid()
         {
-            books = new ObservableCollection<BookEntity>(Book.GetAllBooks());
+            booksToBeDisplayed = new ObservableCollection<BookEntity>(Book.GetAllBooks());
         }
 
         public void dataGrid_SelectionChanged(object sender, EventArgs e)
