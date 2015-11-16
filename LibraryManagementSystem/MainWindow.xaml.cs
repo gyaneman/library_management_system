@@ -41,16 +41,7 @@ namespace LibraryManagementSystem
             booksToBeDisplayed = new ObservableCollection<BookEntity>(books);
             this.dataGrid.ItemsSource = booksToBeDisplayed;
         }
-
-        public void InsertBookTest()
-        {
-            BookEntity book = new BookEntity();
-            book.Title = "エリック・エヴァンスのドメイン駆動設計";
-            book.Author = "Eric Evans";
-            book.Publisher = "翔泳社";
-            Book.Save(book);
-        }
-
+        
         public void UpdateDataGrid()
         {
             booksToBeDisplayed = new ObservableCollection<BookEntity>(Book.GetAllBooks());
@@ -65,6 +56,7 @@ namespace LibraryManagementSystem
         {
             var bookCreationWindow = new BookCreationWindow();
             bookCreationWindow.ShowDialog();
+            UpdateDataGrid();
         }
     }
 }
