@@ -38,19 +38,6 @@ namespace LibraryManagementSystem
         {
             InitializeComponent();
             var books = Book.GetAllBooks();
-            Console.Write("num:" + books.Count);
-            //InsertBookTest();
-            /*
-            people.Add(new Person());
-            people.Add(new Person());
-            people.Add(new Person());
-            people.Add(new Person());
-            people.Add(new Person());
-            people.Add(new Person());
-            people.Add(new Person());
-            people.Add(new Person());
-            */
-            //this.dataGrid.ItemsSource = people;
             booksToBeDisplayed = new ObservableCollection<BookEntity>(books);
             this.dataGrid.ItemsSource = booksToBeDisplayed;
         }
@@ -72,6 +59,12 @@ namespace LibraryManagementSystem
         public void dataGrid_SelectionChanged(object sender, EventArgs e)
         {
             Console.WriteLine("dataGrid selection changed");
+        }
+
+        private void openBookCreationWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            var bookCreationWindow = new BookCreationWindow();
+            bookCreationWindow.ShowDialog();
         }
     }
 }
