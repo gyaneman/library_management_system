@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LibraryManagementSystem.Models;
+using LibraryManagementSystem.Modules;
 
 namespace LibraryManagementSystem
 {
@@ -49,6 +50,21 @@ namespace LibraryManagementSystem
         private void buttonSearchFromIsbn_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Search From ISBN");
+            
+            List<Book> books = Book.GetBookFromIsbn(this.textBoxIsbn.Text);
+            if (books.Count == 1)
+            {
+                Book book = books[0];
+                this.textBoxTitle.Text = book.Title;
+                this.textBoxPublisher.Text = book.Publisher;
+                this.textBoxAuthor.Text = book.Author;
+                this.textBoxIsbn.Text = book.Isbn;
+            }
+            foreach(Book book in books)
+            {
+                Console.WriteLine("================");
+                book.Show();
+            }
         }
     }
 }
