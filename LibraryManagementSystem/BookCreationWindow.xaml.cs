@@ -33,7 +33,7 @@ namespace LibraryManagementSystem
                 this.labelWarningTitle.Visibility = Visibility.Visible;
                 return;
             }
-            var newBook = new Entities.BookEntity();
+            var newBook = new Book();
             newBook.Title = this.textBoxTitle.Text;
             newBook.Author = this.textBoxAuthor.Text;
             newBook.Publisher = this.textBoxPublisher.Text;

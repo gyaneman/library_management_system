@@ -117,8 +117,6 @@
     <Compile Include="BookCreationWindow.xaml.cs">
       <DependentUpon>BookCreationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Entities\BaseEntity.cs" />
-    <Compile Include="Entities\BookEntity.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

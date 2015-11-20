@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 
-using LibraryManagementSystem.Entities;
 
 namespace LibraryManagementSystem.Models
 {
@@ -14,15 +13,144 @@ namespace LibraryManagementSystem.Models
         /// <summary>
         /// テーブル名
         /// </summary>
-        private const string TABLE_NAME = "book";
+        private static string TABLE_NAME = "book";
+
+        /// <summary>
+        /// Bookのプロパティ
+        /// </summary>
+        private string isbn = null;
+        private string title = null;
+        private string author = null;
+        private string publisher = null;
+        private string series = null;
+
+        /// <summary>
+        /// 新しいBookを登録する時のインスタンス作成
+        /// </summary>
+        public Book() : base()
+        {
+        }
+
+        /// <summary>
+        /// Bookのインスタンス生成
+        /// _idはユニークな値でなければならないので、DBのデータからインスタンスを
+        /// 作成するときに使う
+        /// </summary>
+        /// <param name="_id">ID(ユニークでなければならない)</param>
+        /// <param name="_isbn">ISBN</param>
+        /// <param name="_title">タイトル. nullは不可</param>
+        /// <param name="_author">筆者</param>
+        /// <param name="_publisher">出版社</param>
+        /// <param name="_series">シリーズものであればそのID. シリーズものでなければnull</param>
+        /// <param name="_created_at">レコード作成日時</param>
+        /// <param name="_edited_at">データの最終変更日時</param>
+        public Book(
+            string _id,
+            string _isbn,
+            string _title,
+            string _author,
+            string _publisher,
+            string _series,
+            string _created_at,
+            string _edited_at)
+            : base(_id, _created_at, _edited_at)
+        {
+            Console.WriteLine(_id);
+            this.isbn = _isbn;
+            this.title = _title;
+            this.author = _author;
+            this.publisher = _publisher;
+            this.series = _series;
+        }
+
+        /// <summary>
+        /// this.titleのgetter&setter
+        /// </summary>
+        public string Title
+        {
+            set
+            {
+                this.title = value;
+                Edited();
+            }
+            get
+            {
+                return this.title;
+            }
+        }
+
+
+        /// <summary>
+        /// this.isbnのgetter&setter
+        /// </summary>
+        public string Isbn
+        {
+            set
+            {
+                this.isbn = value;
+                Edited();
+            }
+            get
+            {
+                return this.isbn;
+            }
+        }
+
+        /// <summary>
+        /// this.authorのgetter&setter
+        /// </summary>
+        public string Author
+        {
+            set
+            {
+                this.author = value;
+                Edited();
+            }
+            get
+            {
+                return this.author;
+            }
+        }
+
+        /// <summary>
+        /// this.publisherのgetter&setter
+        /// </summary>
+        public string Publisher
+        {
+            set
+            {
+                this.publisher = value;
+                Edited();
+            }
+            get
+            {
+                return this.publisher;
+            }
+        }
+
+        /// <summary>
+        /// this.seriesのgetter&setter
+        /// </summary>
+        public string Series
+        {
+            set
+            {
+                this.series = value;
+                Edited();
+            }
+            get
+            {
+                return this.series;
+            }
+        }
 
         /// <summary>
         /// 全ての本をデータベースから取得
         /// </summary>
         /// <returns>BookEntityのリスト</returns>
-        public static List<Entities.BookEntity> GetAllBooks()
+        public static List<Book> GetAllBooks()
         {
-            List<Entities.BookEntity> result = new List<Entities.BookEntity>();
+            List<Book> result = new List<Book>();
             using (SQLiteConnection cn = new SQLiteConnection(dbConStr))
             {
                 cn.Open();
@@ -32,7 +160,7 @@ namespace LibraryManagementSystem.Models
                 {
                     while (reader.Read())
                     {
-                        BookEntity book = new BookEntity(
+                        Book book = new Book(
                             reader["id"].ToString(),
                             reader["isbn"].ToString(),
                             reader["title"].ToString(),
@@ -55,7 +183,7 @@ namespace LibraryManagementSystem.Models
         /// </summary>
         /// <param name="book">データベースに保存する本の情報</param>
         /// <returns>保存に成功したときはResult.Success、失敗時はResult.Failed</returns>
-        public static Result Save(BookEntity book)
+        public static Result Save(Book book)
         {
             if (book.Title == null)
             {
@@ -81,6 +209,14 @@ namespace LibraryManagementSystem.Models
                 cn.Close();
             }
             return Result.Success;
+        }
+
+        /// <summary>
+        /// Bookのデータを表示する
+        /// </summary>
+        public void Print()
+        {
+            Console.WriteLine("Title:" + title);
         }
     }
 }

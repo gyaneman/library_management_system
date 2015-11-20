@@ -9,9 +9,9 @@ namespace LibraryManagementSystem.Modules
 {
     class Http
     {
-        public static Entities.BookEntity GetBookDataFromIsbn()
+        public static Models.Book GetBookDataFromIsbn()
         {
-            var book = new Entities.BookEntity();
+            var book = new Models.Book();
             var client = new HttpClient();
             return book;
         }
