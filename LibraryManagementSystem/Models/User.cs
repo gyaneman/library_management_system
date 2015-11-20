@@ -84,6 +84,11 @@ namespace LibraryManagementSystem.Models
             }
         }
 
+
+        /// <summary>
+        /// DBに存在するユーザデータを全て取得してユーザリストにして返す
+        /// </summary>
+        /// <returns>ユーザのリスト</returns>
         public static List<User> GetAllUsers()
         {
             List<User> users = new List<User>();
@@ -111,6 +116,9 @@ namespace LibraryManagementSystem.Models
             return users;
         }
 
+        /// <summary>
+        /// デバッグ用のパラメータ出力
+        /// </summary>
         public void Show()
         {
             if (name != null)
