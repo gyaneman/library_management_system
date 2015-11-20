@@ -59,12 +59,10 @@ namespace LibraryManagementSystem.Modules
     class Http
     {
         static string applicationId = @"1099179332900118213";
-        static string rakutenApiUrl = @"https://app.rakuten.co.jp/services/api/BooksBook/Search/20130522?applicationId=1099179332900118213&isbn=9784274068560";
+        static string rakutenApiUrl = @"https://app.rakuten.co.jp/services/api/BooksBook/Search/20130522?applicationId=1099179332900118213&isbn=9784274068560&formatVersion=2";
         public static Models.Book GetBookDataFromIsbn()
         {
             var book = new Models.Book();
-            // var client = new HttpClient();
-
 
             var req = WebRequest.CreateHttp(rakutenApiUrl);
             req.Method = "GET";
@@ -74,6 +72,12 @@ namespace LibraryManagementSystem.Modules
             RakutenResponseBook result = serializer.Deserialize<RakutenResponseBook>(new JsonTextReader(new StreamReader(res.GetResponseStream())));
             Console.WriteLine(result.ToString());
             Console.WriteLine(result.count);
+            foreach(RakutenResponseBook.RakutenResponseBookItem item in result.Items)
+            {
+                Console.WriteLine(item);
+                Console.WriteLine(item.title);
+                Console.WriteLine(item.author);
+            }
             return book;
         }
     }
