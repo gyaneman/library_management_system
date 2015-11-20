@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
-
-
+using LibraryManagementSystem.Modules;
+using RakutenBook = LibraryManagementSystem.Modules.RakutenJsonModels.RakutenBook;
 namespace LibraryManagementSystem.Models
 {
     class Book: Model
@@ -147,7 +147,7 @@ namespace LibraryManagementSystem.Models
         /// <summary>
         /// 全ての本をデータベースから取得
         /// </summary>
-        /// <returns>BookEntityのリスト</returns>
+        /// <returns>取得した本のデータをBookのリストで返す</returns>
         public static List<Book> GetAllBooks()
         {
             List<Book> result = new List<Book>();
@@ -170,7 +170,7 @@ namespace LibraryManagementSystem.Models
                             reader["created_at"].ToString(),
                             reader["edited_at"].ToString()
                             );
-                        book.Print();
+                        // book.Show();
                         result.Add(book);
                     }
                 }
@@ -204,7 +204,6 @@ namespace LibraryManagementSystem.Models
                 cmd.Parameters.Add(new SQLiteParameter("@AUTHOR", book.Author));
                 cmd.Parameters.Add(new SQLiteParameter("@PUBLISHER", book.Publisher));
                 cmd.Parameters.Add(new SQLiteParameter("@SERIES", book.Series));
-                Console.WriteLine(cmd.ToString() + ":  " + cmd.CommandText);
                 cmd.ExecuteNonQuery();
                 cn.Close();
             }
@@ -212,11 +211,49 @@ namespace LibraryManagementSystem.Models
         }
 
         /// <summary>
+        /// ISBNコードで楽天APIから本を検索する
+        /// </summary>
+        /// <param name="_isbn">検索する本のISBNコード</param>
+        /// <returns>検索結果をBookのListで返す</returns>
+        public static List<Book> GetBookFromIsbn(string _isbn)
+        {
+            List<Book> books = new List<Book>();
+            RakutenBook response = RakutenBookApiController.GetBookDataFromIsbn<RakutenBook>(_isbn);
+            foreach(RakutenBook.Item item in response.Items)
+            {
+                books.Add(new Book
+                {
+                    Isbn = item.isbn,
+                    Title = item.title,
+                    Author = item.author,
+                    Publisher = item.publisherName,
+                    //Series = item.seriesName
+                });
+            }
+            return books;
+        }
+
+        /// <summary>
         /// Bookのデータを表示する
         /// </summary>
-        public void Print()
+        public void Show()
         {
-            Console.WriteLine("Title:" + title);
+            if (title != null)
+            {
+                Console.WriteLine("Title:     " + title);
+            }
+            if (author != null)
+            {
+                Console.WriteLine("Author:    " + author);
+            }
+            if (isbn != null)
+            {
+                Console.WriteLine("ISBN:      " + isbn);
+            }
+            if (publisher != null)
+            {
+                Console.WriteLine("Publisher: " + publisher);
+            }
         }
     }
 }

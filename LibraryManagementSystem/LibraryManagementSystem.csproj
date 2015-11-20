@@ -129,7 +129,8 @@
   <ItemGroup>
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Model.cs" />
-    <Compile Include="Modules\Http.cs" />
+    <Compile Include="Modules\RakutenBookApiController.cs" />
+    <Compile Include="Modules\RakutenJsonModels\RakutenBook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
