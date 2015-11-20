@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 //using JsonConfig;
 using LibraryManagementSystem.Models;
-using LibraryManagementSystem.Entities;
 
 
 namespace LibraryManagementSystem
@@ -31,20 +30,20 @@ namespace LibraryManagementSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        ObservableCollection<BookEntity> booksToBeDisplayed;
+        ObservableCollection<Book> booksToBeDisplayed;
         public ObservableCollection<Person> people { get; set; } = new ObservableCollection<Person>();
 
         public MainWindow()
         {
             InitializeComponent();
             var books = Book.GetAllBooks();
-            booksToBeDisplayed = new ObservableCollection<BookEntity>(books);
+            booksToBeDisplayed = new ObservableCollection<Book>(books);
             this.dataGrid.ItemsSource = booksToBeDisplayed;
         }
         
         public void UpdateDataGrid()
         {
-            booksToBeDisplayed = new ObservableCollection<BookEntity>(Book.GetAllBooks());
+            booksToBeDisplayed = new ObservableCollection<Book>(Book.GetAllBooks());
         }
 
         public void dataGrid_SelectionChanged(object sender, EventArgs e)
