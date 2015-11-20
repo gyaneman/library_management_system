@@ -23,6 +23,7 @@ namespace LibraryManagementSystem
         public BookCreationWindow()
         {
             InitializeComponent();
+            Modules.Http.GetBookDataFromIsbn();
         }
 
         private void buttonBookCreation_Click(object sender, RoutedEventArgs e)
