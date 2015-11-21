@@ -31,7 +31,7 @@ namespace LibraryManagementSystem
     public partial class MainWindow : Window
     {
         ObservableCollection<Book> booksToBeDisplayed;
-        public ObservableCollection<Person> people { get; set; } = new ObservableCollection<Person>();
+        // public ObservableCollection<Person> people { get; set; } = new ObservableCollection<Person>();
 
         public MainWindow()
         {
@@ -51,11 +51,16 @@ namespace LibraryManagementSystem
             Console.WriteLine("dataGrid selection changed");
         }
 
-        private void openBookCreationWindowButton_Click(object sender, RoutedEventArgs e)
+        private void OpenBookCreationWindowButton_Click(object sender, RoutedEventArgs e)
         {
             var bookCreationWindow = new BookCreationWindow();
             bookCreationWindow.ShowDialog();
-            UpdateDataGrid();
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            var userListWindow = new UserListWindow();
+            userListWindow.ShowDialog();
         }
     }
 }
