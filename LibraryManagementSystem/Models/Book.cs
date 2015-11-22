@@ -44,7 +44,7 @@ namespace LibraryManagementSystem.Models
         /// <param name="_series">シリーズものであればそのID. シリーズものでなければnull</param>
         /// <param name="_created_at">レコード作成日時</param>
         /// <param name="_edited_at">データの最終変更日時</param>
-        private Book(
+        public Book(
             string _id,
             string _isbn,
             string _title,
