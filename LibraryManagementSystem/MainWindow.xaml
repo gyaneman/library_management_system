@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="555.029" Width="775.591">
-    <Grid Width="Auto" Height="Auto">
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="275" Width="Auto" ItemsSource="{Binding Path=books}" AutoGenerateColumns="False" SelectionChanged="dataGrid_SelectionChanged">
+        Title="MainWindow" Height="555.029" Width="1152.164">
+    <Grid Width="Auto" Height="Auto" Margin="0,0,2,0">
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Top" Height="275" Width="Auto" ItemsSource="{Binding Path=books}" AutoGenerateColumns="False" SelectionChanged="dataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" />
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" />

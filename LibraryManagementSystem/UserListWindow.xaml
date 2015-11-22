@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="UserList" Height="300" Width="300">
+        Title="UserList" Height="300" Width="500">
     <Grid>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="202" Width="272" ItemsSource="{Binding Path=users}" AutoGenerateColumns="False" MouseDoubleClick="dataGrid_MouseDoubleClick">
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Top" Height="203" Width="Auto" ItemsSource="{Binding Path=users}" AutoGenerateColumns="False" MouseDoubleClick="dataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" />
