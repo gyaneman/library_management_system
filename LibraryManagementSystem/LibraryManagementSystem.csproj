@@ -109,6 +109,7 @@
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\LendingHistory.cs" />
     <Compile Include="RegistrationAccountWindow.xaml.cs">
       <DependentUpon>RegistrationAccountWindow.xaml</DependentUpon>
     </Compile>
