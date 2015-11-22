@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="555.029" Width="775.591">
     <Grid Width="Auto" Height="Auto">
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="275" Width="Auto" ItemsSource="{Binding Path=books}"  AutoGenerateColumns="False" SelectionChanged="dataGrid_SelectionChanged">
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="275" Width="Auto" ItemsSource="{Binding Path=books}" AutoGenerateColumns="False" SelectionChanged="dataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" />
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
@@ -18,7 +18,8 @@
                 <DataGridTextColumn Header="Edited" Binding="{Binding EditedAt}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="openBookCreationWindowButton" Content="New Book" HorizontalAlignment="Left" Margin="84,333,0,0" VerticalAlignment="Top" Width="75" Click="openBookCreationWindowButton_Click"/>
+        <Button x:Name="OpenBookCreationWindowButton" Content="New Book" HorizontalAlignment="Left" Margin="84,333,0,0" VerticalAlignment="Top" Width="75" Click="OpenBookCreationWindowButton_Click"/>
+        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Margin="132,422,0,0" VerticalAlignment="Top" Width="75" Click="LoginButton_Click"/>
 
     </Grid>
 </Window>

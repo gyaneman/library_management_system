@@ -7,13 +7,13 @@ using System.Data.SQLite;
 
 namespace LibraryManagementSystem.Models
 {
-    enum Result
+    public enum Result
     {
         Success,
         Failed
     }
 
-    class Model
+    public class Model
     {
         enum State
         {
@@ -35,7 +35,7 @@ namespace LibraryManagementSystem.Models
             this.state = State.New;
         }
 
-        public Model(string _id, string _created_at, string _edited_at)
+        protected Model(string _id, string _created_at, string _edited_at)
         {
             this.id = _id;
             this.state = State.Recorded;
@@ -45,7 +45,6 @@ namespace LibraryManagementSystem.Models
 
         public string Id
         {
-            set { }
             get
             {
                 return id;
@@ -54,7 +53,6 @@ namespace LibraryManagementSystem.Models
 
         public string CreatedAt
         {
-            set { }
             get
             {
                 return this.created_at;
@@ -63,7 +61,6 @@ namespace LibraryManagementSystem.Models
 
         public string EditedAt
         {
-            set { }
             get
             {
                 return this.edited_at;
