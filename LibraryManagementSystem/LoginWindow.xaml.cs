@@ -44,8 +44,20 @@ namespace LibraryManagementSystem
         /// <param name="e"></param>
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            successfulLoginDelegate();
-            this.Close();
+            if (requestUser == null)
+            {
+                this.Close();
+            }
+            if (requestUser.CheckPassword(this.PasswordTextBox.Password))
+            {
+                successfulLoginDelegate();
+                this.Close();
+            } 
+            else
+            {
+                System.Media.SystemSounds.Beep.Play();
+                this.PasswordTextBox.Password = "";
+            }
         }
     }
 }
