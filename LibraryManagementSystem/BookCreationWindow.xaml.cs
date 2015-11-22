@@ -38,6 +38,7 @@ namespace LibraryManagementSystem
                 return;
             }
             var newBook = new Book();
+            newBook.Isbn = this.textBoxIsbn.Text;
             newBook.Title = this.textBoxTitle.Text;
             newBook.Author = this.textBoxAuthor.Text;
             newBook.Publisher = this.textBoxPublisher.Text;

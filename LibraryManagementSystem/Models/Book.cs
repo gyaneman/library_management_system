@@ -170,7 +170,7 @@ namespace LibraryManagementSystem.Models
                             reader["created_at"].ToString(),
                             reader["edited_at"].ToString()
                             );
-                        // book.Show();
+                        book.Show();
                         result.Add(book);
                     }
                 }
@@ -223,10 +223,10 @@ namespace LibraryManagementSystem.Models
             {
                 books.Add(new Book
                 {
-                    Isbn = item.isbn,
-                    Title = item.title,
-                    Author = item.author,
-                    Publisher = item.publisherName,
+                    isbn = item.isbn,
+                    title = item.title,
+                    author = item.author,
+                    publisher = item.publisherName,
                     //Series = item.seriesName
                 });
             }
