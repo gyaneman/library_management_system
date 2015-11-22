@@ -58,6 +58,7 @@ namespace LibraryManagementSystem
         private void OpenBookCreationWindowButton_Click(object sender, RoutedEventArgs e)
         {
             var bookCreationWindow = new BookCreationWindow();
+            bookCreationWindow.createBookDelegate += AddBook;
             bookCreationWindow.ShowDialog();
         }
 
@@ -81,6 +82,11 @@ namespace LibraryManagementSystem
         public void Logout()
         {
             currentUser = null;
+        }
+
+        public void AddBook(Book book)
+        {
+            booksToBeDisplayed.Add(book);
         }
     }
 }
