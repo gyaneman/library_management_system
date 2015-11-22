@@ -79,7 +79,7 @@ namespace LibraryManagementSystem.Models
         {
             set
             {
-                this.hashedPassword = value;
+                this.hashedPassword = GetSha256(value);
             }
             get
             {
@@ -119,6 +119,41 @@ namespace LibraryManagementSystem.Models
             return users;
         }
 
+        /// <summary>
+        /// 新規ユーザをDBに保存する
+        /// </summary>
+        /// <param name="user">保存するユーザデータ</param>
+        /// <returns></returns>
+        public static Result Save(User user)
+        {
+            if (user.name == null || user.hashedPassword == null || user.email == null)
+            {
+                return Result.Failed;
+            }
+
+            using (SQLiteConnection cn = new SQLiteConnection(dbConStr))
+            {
+                cn.Open();
+                SQLiteCommand cmd = cn.CreateCommand();
+                cmd.CommandText =
+                    "INSERT INTO "
+                    + TABLE_NAME + " (name, email, password, created_at, edited_at) "
+                    + "VALUES (@NAME, @EMAIL, @PASSWORD, DATETIME('now'), DATETIME('now'))";
+
+                cmd.Parameters.Add(new SQLiteParameter("@NAME", user.name));
+                cmd.Parameters.Add(new SQLiteParameter("@EMAIL", user.email));
+                cmd.Parameters.Add(new SQLiteParameter("@PASSWORD", user.hashedPassword));
+                cmd.ExecuteNonQuery();
+                cn.Close();
+            }
+            return Result.Success;
+        }
+
+        /// <summary>
+        /// passとユーザのパスワードが一致するか調べる
+        /// </summary>
+        /// <param name="pass">調べるpassword</param>
+        /// <returns>一致すればtrue、他はfalse</returns>
         public bool CheckPassword(string pass)
         {
             var hash = GetSha256(pass);
@@ -129,6 +164,11 @@ namespace LibraryManagementSystem.Models
             return false;
         }
 
+        /// <summary>
+        /// targetをhash化する
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
         private static string GetSha256(string target)
         {
             SHA256 mySHA256 = SHA256Managed.Create();
