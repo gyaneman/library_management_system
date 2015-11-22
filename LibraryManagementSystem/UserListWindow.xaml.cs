@@ -80,5 +80,16 @@ namespace LibraryManagementSystem
             }
             this.Close();
         }
+
+        /// <summary>
+        /// 新規ユーザ登録の画面を表示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonCreationNewAccount_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationAccountWindow registrationWindow = new RegistrationAccountWindow();
+            registrationWindow.ShowDialog();
+        }
     }
 }
