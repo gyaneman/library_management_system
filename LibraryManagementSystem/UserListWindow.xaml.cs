@@ -89,7 +89,13 @@ namespace LibraryManagementSystem
         private void ButtonCreationNewAccount_Click(object sender, RoutedEventArgs e)
         {
             RegistrationAccountWindow registrationWindow = new RegistrationAccountWindow();
+            registrationWindow.registrationAccountDelegate = AddUser;
             registrationWindow.ShowDialog();
+        }
+
+        public void AddUser(User user)
+        {
+            usersToBeDisplayed.Add(user);
         }
     }
 }

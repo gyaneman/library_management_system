@@ -15,11 +15,15 @@ using LibraryManagementSystem.Models;
 
 namespace LibraryManagementSystem
 {
+    public delegate void RegistrationAccountDelegate(User user);
+
     /// <summary>
     /// RegistrationAccountWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class RegistrationAccountWindow : Window
     {
+        public RegistrationAccountDelegate registrationAccountDelegate;
+
         public RegistrationAccountWindow()
         {
             InitializeComponent();
@@ -62,7 +66,10 @@ namespace LibraryManagementSystem
             user.Name = name;
             user.Email = email;
             user.Password = password;
-            User.Save(user);
+            if (User.Save(user) == Result.Success)
+            {
+                registrationAccountDelegate(user);
+            }
 
             this.Close();
         }

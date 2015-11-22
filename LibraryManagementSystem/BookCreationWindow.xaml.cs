@@ -16,11 +16,14 @@ using LibraryManagementSystem.Modules;
 
 namespace LibraryManagementSystem
 {
+    public delegate void CreateBookDelegate(Book book);
     /// <summary>
     /// BookCreationWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class BookCreationWindow : Window
     {
+        public CreateBookDelegate createBookDelegate;
+
         public BookCreationWindow()
         {
             InitializeComponent();
@@ -38,7 +41,10 @@ namespace LibraryManagementSystem
             newBook.Title = this.textBoxTitle.Text;
             newBook.Author = this.textBoxAuthor.Text;
             newBook.Publisher = this.textBoxPublisher.Text;
-            Book.Save(newBook);
+            if (Book.Save(newBook) == Result.Success)
+            {
+                createBookDelegate(newBook);
+            }
             this.Close();
         }
 

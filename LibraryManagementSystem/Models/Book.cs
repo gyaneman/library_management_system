@@ -8,7 +8,7 @@ using LibraryManagementSystem.Modules;
 using RakutenBook = LibraryManagementSystem.Modules.RakutenJsonModels.RakutenBook;
 namespace LibraryManagementSystem.Models
 {
-    class Book: Model
+    public class Book: Model
     {
         /// <summary>
         /// テーブル名
