@@ -13,7 +13,7 @@ namespace LibraryManagementSystem.Models
         Failed
     }
 
-    class Model
+    public class Model
     {
         enum State
         {

@@ -15,15 +15,37 @@ using LibraryManagementSystem.Models;
 
 namespace LibraryManagementSystem
 {
+    public delegate void SuccessfulLogin();
+
     /// <summary>
     /// LoginWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class LoginWindow : Window
     {
-        User user;
+        /// <summary>
+        /// requestUserのパスワードと一致していたときに呼ばれるデリゲート
+        /// </summary>
+        public SuccessfulLogin successfulLoginDelegate;
+
+        /// <summary>
+        /// ログインリクエストしたユーザ
+        /// </summary>
+        public User requestUser;
+
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// requestUserのパスワードと一致するか検証
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            successfulLoginDelegate();
+            this.Close();
         }
     }
 }

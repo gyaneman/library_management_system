@@ -9,6 +9,6 @@
     <Grid Height="77" VerticalAlignment="Top">
         <TextBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="272" MaxLines="1" MaxLength="32"/>
         <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="45,46,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.237,-0.425" IsCancel="True" Focusable="False"/>
-        <Button x:Name="LoginButton" Content="OK" HorizontalAlignment="Left" Margin="163,46,0,0" VerticalAlignment="Top" Width="75" IsDefault="True"/>
+        <Button x:Name="LoginButton" Content="OK" HorizontalAlignment="Left" Margin="163,46,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="LoginButton_Click"/>
     </Grid>
 </Window>

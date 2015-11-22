@@ -7,7 +7,7 @@ using System.Data.SQLite;
 
 namespace LibraryManagementSystem.Models
 {
-    class User: Model
+    public class User: Model
     {
         /// <summary>
         /// DBのテーブル名
@@ -108,7 +108,6 @@ namespace LibraryManagementSystem.Models
                             reader["created_at"].ToString(),
                             reader["edited_at"].ToString()
                             );
-                        user.Show();
                         users.Add(user);
                     }
                 }

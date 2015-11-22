@@ -16,12 +16,31 @@ using LibraryManagementSystem.Models;
 
 namespace LibraryManagementSystem
 {
+    public delegate void LoginDelegate(User user);
+
     /// <summary>
     /// UserListWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class UserListWindow : Window
     {
+        /// <summary>
+        /// ログインしたときに呼ぶデリゲート
+        /// </summary>
+        public LoginDelegate loginDelegate;
+
+        /// <summary>
+        /// 選択されたユーザ
+        /// </summary>
+        private User selectedUser;
+
+        /// <summary>
+        /// datagridにバインドするユーザコレクション
+        /// </summary>
         ObservableCollection<User> usersToBeDisplayed;
+
+        /// <summary>
+        /// DBから全ユーザを取得して、datagridにバインドする
+        /// </summary>
         public UserListWindow()
         {
             InitializeComponent();
@@ -30,13 +49,36 @@ namespace LibraryManagementSystem
             this.dataGrid.ItemsSource = usersToBeDisplayed;
         }
 
+        /// <summary>
+        /// ダブルクリックされたユーザのパスワード入力を求めるウィンドウを表示する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             User user = this.dataGrid.SelectedItem as User;
-            if (user != null)
+            selectedUser = user;
+            if (user == null)
             {
-                Console.WriteLine(user.Name + "   " + user.CreatedAt);
+                return;
             }
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.requestUser = user;
+            loginWindow.successfulLoginDelegate = SuccessfulLogin;
+            loginWindow.ShowDialog();
+        }
+
+
+        /// <summary>
+        /// LibraryManagementSystem.SuccessfulLoginのメソッド
+        /// </summary>
+        public void SuccessfulLogin()
+        {
+            if (selectedUser != null)
+            {
+                loginDelegate(selectedUser);
+            }
+            this.Close();
         }
     }
 }

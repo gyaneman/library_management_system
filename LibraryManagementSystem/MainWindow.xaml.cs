@@ -31,7 +31,11 @@ namespace LibraryManagementSystem
     public partial class MainWindow : Window
     {
         ObservableCollection<Book> booksToBeDisplayed;
-        // public ObservableCollection<Person> people { get; set; } = new ObservableCollection<Person>();
+
+        /// <summary>
+        /// 現在ログイン中のユーザ
+        /// </summary>
+        User currentUser;
 
         public MainWindow()
         {
@@ -60,7 +64,23 @@ namespace LibraryManagementSystem
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             var userListWindow = new UserListWindow();
+            userListWindow.loginDelegate = Login;
             userListWindow.ShowDialog();
+        }
+
+        /// <summary>
+        /// LibraryManagementSystem.LoginDelegateのメソッド
+        /// </summary>
+        /// <param name="user">ログインしたユーザ</param>
+        public void Login(User user)
+        {
+            Console.WriteLine(user.Name);
+            currentUser = user;
+        }
+
+        public void Logout()
+        {
+            currentUser = null;
         }
     }
 }
