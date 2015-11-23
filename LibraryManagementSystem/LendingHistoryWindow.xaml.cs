@@ -24,6 +24,10 @@ namespace LibraryManagementSystem
         ObservableCollection<LendingHistoryRecord> lendingHistoryToBeDisplayed;
         private User user;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="_user"></param>
         public LendingHistoryWindow(User _user)
         {
             InitializeComponent();
@@ -34,6 +38,12 @@ namespace LibraryManagementSystem
             this.dataGrid.ItemsSource = lendingHistoryToBeDisplayed;
         }
 
+        /// <summary>
+        /// datagrid上でダブルクリックされた時のハンドラ
+        /// ダブルクリックされたアイテム（本）を返却
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var lendingRecord = this.dataGrid.SelectedItem as LendingHistoryRecord;

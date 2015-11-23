@@ -228,7 +228,6 @@ namespace LibraryManagementSystem.Models
                     title = item.title,
                     author = item.author,
                     publisher = item.publisherName,
-                    //Series = item.seriesName
                 });
             }
             return books;

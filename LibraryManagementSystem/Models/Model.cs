@@ -24,8 +24,7 @@ namespace LibraryManagementSystem.Models
 
         static string dbPath = "c:\\Users\\kataoka\\Application\\dbdata\\library_management_system.sqlite3";
         protected static string dbConStr = "Data Source=" + dbPath + ";Version=3;";
-
-        State state = State.New;
+        
         private string id;
         private string created_at;
         private string edited_at;

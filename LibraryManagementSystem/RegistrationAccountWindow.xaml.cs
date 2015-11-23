@@ -29,6 +29,11 @@ namespace LibraryManagementSystem
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 登録ボタンが押された時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonRegister_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("ButtonRegister_Clicked");

@@ -25,11 +25,21 @@ namespace LibraryManagementSystem
 
         string dueDateContent;
 
+        /// <summary>
+        /// 本の詳細
+        /// </summary>
+        /// <param name="_book">詳細を表示する図書</param>
+        /// <param name="_user">ログインしていればユーザのデータ、ログインしていなければnull</param>
         public BookDetailsWindow(Book _book, User _user)
         {
             InitializeComponent();
             book = _book;
             user = _user;
+
+            if (_book == null)
+            {
+                return;
+            }
             
             if (_user == null)
             {
@@ -55,11 +65,19 @@ namespace LibraryManagementSystem
             };
         }
 
+        /// <summary>
+        /// ログインしていないユーザのときのみ行う処理
+        /// </summary>
         private void InitOfGuestOnly()
         {
             this.buttonRental.IsEnabled = false;
         }
 
+        /// <summary>
+        /// 貸し出しのボタンが押された時のハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonRental_Click(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show(
@@ -78,6 +96,10 @@ namespace LibraryManagementSystem
             }
         }
 
+        /// <summary>
+        /// 図書が借りれないときに呼び出す
+        /// </summary>
+        /// <param name="_content">DueInfoに表示する文字列</param>
         private void CanNotBorrow(string _content)
         {
             this.dueDateContent = _content;

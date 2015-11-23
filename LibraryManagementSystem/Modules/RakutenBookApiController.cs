@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-//using System.Net.Http;
 using System.Web;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,13 +32,6 @@ namespace LibraryManagementSystem.Modules
             var res = req.GetResponse();
             var serializer = new JsonSerializer();
             return serializer.Deserialize<Type>(new JsonTextReader(new StreamReader(res.GetResponseStream())));
-            /*Console.WriteLine(result.ToString());
-            Console.WriteLine(result.count);
-            foreach(Type.Item item in result.Items)
-            {
-                Console.WriteLine(item.title);
-                Console.WriteLine(item.author);
-            }*/
         }
     }
 }

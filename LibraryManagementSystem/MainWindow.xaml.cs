@@ -109,11 +109,21 @@ namespace LibraryManagementSystem
             this.lendingHistoryButton.IsEnabled = false;
         }
 
+        /// <summary>
+        /// 本を追加する
+        /// delegateの関数
+        /// </summary>
+        /// <param name="book"></param>
         public void AddBook(Book book)
         {
             booksToBeDisplayed.Add(book);
         }
 
+        /// <summary>
+        /// 履歴をクリックされた時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lendingHistoryButton_Click(object sender, RoutedEventArgs e)
         {
             LendingHistoryWindow lendingHistoryWindow = new LendingHistoryWindow(currentUser);
