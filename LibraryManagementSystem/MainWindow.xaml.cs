@@ -98,6 +98,9 @@ namespace LibraryManagementSystem
             this.lendingHistoryButton.IsEnabled = true;
         }
 
+        /// <summary>
+        /// ログアウト時に呼び出す
+        /// </summary>
         public void Logout()
         {
             currentUser = null;

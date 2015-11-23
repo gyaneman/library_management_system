@@ -30,7 +30,7 @@ namespace LibraryManagementSystem
             user = _user;
             var history = LendingHistoryRecord.GetUnreturnedBookOfUser(_user);
             lendingHistoryToBeDisplayed = 
-                new ObservableCollection<LendingHistoryRecord>();
+                new ObservableCollection<LendingHistoryRecord>(history);
             this.dataGrid.ItemsSource = lendingHistoryToBeDisplayed;
         }
     }
