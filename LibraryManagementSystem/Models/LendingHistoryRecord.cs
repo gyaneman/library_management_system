@@ -142,7 +142,7 @@ namespace LibraryManagementSystem.Models
                             reader["user.created_at"].ToString(),
                             reader["user.edited_at"].ToString()
                             );*/
-                        Book book = new Book(
+                        Book _book = new Book(
                         reader[7].ToString(),   // id
                         reader[8].ToString(),   // isbn
                         reader[9].ToString(),   // title
@@ -153,33 +153,14 @@ namespace LibraryManagementSystem.Models
                         reader[14].ToString()   // edited_at
                         );
                         LendingHistoryRecord history = new LendingHistoryRecord(
-                            reader[0].ToString(),
+                            reader[0].ToString(),   // id
                             _user,
-                            book,
-                            reader[3].ToString(),
-                            reader[4].ToString(),
-                            reader[5].ToString(),
-                            reader[6].ToString()
+                            _book,
+                            reader[3].ToString(),   // return_date
+                            reader[4].ToString(),   // completion_date
+                            reader[5].ToString(),   // created_at
+                            reader[6].ToString()    // edited_at
                             );
-                        /*Book book = new Book(
-                            reader["book.id"].ToString(),
-                            reader["book.isbn"].ToString(),
-                            reader["book.title"].ToString(),
-                            reader["book.author"].ToString(),
-                            reader["book.publisher"].ToString(),
-                            reader["book.series"].ToString(),
-                            reader["book.created_at"].ToString(),
-                            reader["book.edited_at"].ToString()
-                            );
-                        LendingHistoryRecord history = new LendingHistoryRecord(
-                            reader["lending_history.id"].ToString(),
-                            _user,
-                            book,
-                            reader["lending_history.return_date"].ToString(),
-                            reader["lending_history.completion_date"].ToString(),
-                            reader["lending_history.created_at"].ToString(),
-                            reader["lending_history.edited_at"].ToString()
-                            );*/
                         history.Show();
                         result.Add(history);
                     }

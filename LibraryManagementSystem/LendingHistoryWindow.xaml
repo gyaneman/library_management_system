@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="LendingHistoryWindow" Height="352.316" Width="378.474">
+        Title="LendingHistoryWindow" Height="340.055" Width="513.352">
     <Grid Width="Auto" Height="Auto" Margin="0,0,0,41">
         <DataGrid x:Name="dataGrid"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Height="Auto" Width="Auto" ItemsSource="{Binding Path=lendingHistory}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Title" Binding="{Binding LentBook.Title}" IsReadOnly="True" Width="100" />
+                <DataGridTextColumn Header="Title" Binding="{Binding LentBook.Title}" IsReadOnly="True" Width="200" />
                 <DataGridTextColumn Header="Author" Binding="{Binding LentBook.Author}" IsReadOnly="True" Width="100" />
                 <DataGridTextColumn Header="Due Date" Binding="{Binding DueDate}" IsReadOnly="True" Width="100" />
             </DataGrid.Columns>
         </DataGrid>
-        <Grid HorizontalAlignment="Left" Height="41" Margin="10,0,0,-36" VerticalAlignment="Bottom"  Width="350"/>
+        <Grid HorizontalAlignment="Left" Height="41" Margin="10,0,0,-36" VerticalAlignment="Bottom"  Width="Auto"/>
 
     </Grid>
 </Window>
