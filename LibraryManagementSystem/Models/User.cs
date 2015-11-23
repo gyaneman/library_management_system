@@ -36,7 +36,7 @@ namespace LibraryManagementSystem.Models
         /// <param name="_email"></param>
         /// <param name="_created_at"></param>
         /// <param name="_edited_at"></param>
-        private User(
+        public User(
             string _id, 
             string _name, 
             string _email, 

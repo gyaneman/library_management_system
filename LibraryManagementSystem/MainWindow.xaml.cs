@@ -64,9 +64,25 @@ namespace LibraryManagementSystem
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            var userListWindow = new UserListWindow();
-            userListWindow.loginDelegate = Login;
-            userListWindow.ShowDialog();
+            if (currentUser == null)
+            {
+                var userListWindow = new UserListWindow();
+                userListWindow.loginDelegate = Login;
+                userListWindow.ShowDialog();
+            }
+            else
+            {
+                if (MessageBox.Show(
+                    "Do you want to logout?", 
+                    "Logout", 
+                    MessageBoxButton.OKCancel, 
+                    MessageBoxImage.Information, 
+                    MessageBoxResult.Cancel
+                    ) == MessageBoxResult.OK )
+                {
+                    Logout();
+                }
+            }
         }
 
         /// <summary>
@@ -77,11 +93,15 @@ namespace LibraryManagementSystem
         {
             Console.WriteLine(user.Name);
             currentUser = user;
+            this.labelUserName.Content = currentUser.Name;
+            this.LoginButton.Content = "Logout";
         }
 
         public void Logout()
         {
             currentUser = null;
+            this.labelUserName.Content = "Guest";
+            this.LoginButton.Content = "Login";
         }
 
         public void AddBook(Book book)
