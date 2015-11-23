@@ -7,7 +7,7 @@ using System.Data.SQLite;
 
 namespace LibraryManagementSystem.Models
 {
-    class LendingHistory: Model
+    class LendingHistoryRecord: Model
     {
         /// <summary>
         /// テーブル名
@@ -34,8 +34,60 @@ namespace LibraryManagementSystem.Models
         /// </summary>
         private string completionDate = null;
 
-        public LendingHistory() : base()
+        public LendingHistoryRecord() : base()
         { }
+
+        /// <summary>
+        /// userのgettersetter
+        /// </summary>
+        public User LendingUser
+        {
+            get
+            {
+                return user;
+            }
+        }
+
+        /// <summary>
+        /// bookのgetter setter
+        /// </summary>
+        public Book LentBook
+        {
+            get
+            {
+                return book;
+            }
+        }
+
+        /// <summary>
+        /// 返却予定日のgetter settter
+        /// </summary>
+        public string DueDate
+        {
+            get
+            {
+                return returnDate;
+            }
+            set
+            {
+                returnDate = value;
+            }
+        }
+
+        /// <summary>
+        /// 返却完了日の日
+        /// </summary>
+        public string CompletionDate
+        {
+            get
+            {
+                return completionDate;
+            }
+            set
+            {
+                completionDate = value;
+            }
+        }
 
         /// <summary>
         /// DBから履歴取得時にインスタンス初期化するため
@@ -47,7 +99,7 @@ namespace LibraryManagementSystem.Models
         /// <param name="_completionDate"></param>
         /// <param name="_created_at"></param>
         /// <param name="_edited_at"></param>
-        private LendingHistory(
+        private LendingHistoryRecord(
             string _id,
             User _user,
             Book _book,
@@ -63,16 +115,16 @@ namespace LibraryManagementSystem.Models
             this.completionDate = _completionDate;
         }
 
-        public static List<LendingHistory> GetUnreturnedBookOfUser(User _user)
+        public static List<LendingHistoryRecord> GetUnreturnedBookOfUser(User _user)
         {
-            List<LendingHistory> result = new List<LendingHistory>();
+            List<LendingHistoryRecord> result = new List<LendingHistoryRecord>();
             using (SQLiteConnection cn = new SQLiteConnection(dbConStr))
             {
                 cn.Open();
                 SQLiteCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "SELECT * FROM " + TABLE_NAME
                     //+ " INNER JOIN user ON lending_history.user_id"
-                    + " INNER JOIN book ON lending_history.book_id"
+                    + " INNER JOIN book ON lending_history.book_id = book.id"
                     + " WHERE completion_date IS NULL"
                     + " AND user_id = @USER_ID"
                     + ";";
@@ -91,6 +143,25 @@ namespace LibraryManagementSystem.Models
                             reader["user.edited_at"].ToString()
                             );*/
                         Book book = new Book(
+                        reader[7].ToString(),   // id
+                        reader[8].ToString(),   // isbn
+                        reader[9].ToString(),   // title
+                        reader[10].ToString(),  // author
+                        reader[11].ToString(),  // publisher
+                        reader[12].ToString(),  // series
+                        reader[13].ToString(),  // created_at
+                        reader[14].ToString()   // edited_at
+                        );
+                        LendingHistoryRecord history = new LendingHistoryRecord(
+                            reader[0].ToString(),
+                            _user,
+                            book,
+                            reader[3].ToString(),
+                            reader[4].ToString(),
+                            reader[5].ToString(),
+                            reader[6].ToString()
+                            );
+                        /*Book book = new Book(
                             reader["book.id"].ToString(),
                             reader["book.isbn"].ToString(),
                             reader["book.title"].ToString(),
@@ -100,7 +171,7 @@ namespace LibraryManagementSystem.Models
                             reader["book.created_at"].ToString(),
                             reader["book.edited_at"].ToString()
                             );
-                        LendingHistory history = new LendingHistory(
+                        LendingHistoryRecord history = new LendingHistoryRecord(
                             reader["lending_history.id"].ToString(),
                             _user,
                             book,
@@ -108,12 +179,30 @@ namespace LibraryManagementSystem.Models
                             reader["lending_history.completion_date"].ToString(),
                             reader["lending_history.created_at"].ToString(),
                             reader["lending_history.edited_at"].ToString()
-                            );
+                            );*/
+                        history.Show();
                         result.Add(history);
                     }
                 }
             }
             return result;
+        }
+
+        public void Show()
+        {
+            Console.WriteLine("============================");
+            Console.WriteLine("Lending history");
+            user.Show();
+            book.Show();
+            Console.WriteLine(returnDate);
+            if (completionDate == null)
+            {
+                Console.WriteLine("NULL");
+            }
+            else
+            {
+                Console.WriteLine(completionDate);
+            }
         }
     }
 }

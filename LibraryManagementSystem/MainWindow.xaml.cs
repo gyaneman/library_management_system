@@ -95,6 +95,7 @@ namespace LibraryManagementSystem
             currentUser = user;
             this.labelUserName.Content = currentUser.Name;
             this.LoginButton.Content = "Logout";
+            this.lendingHistoryButton.IsEnabled = true;
         }
 
         public void Logout()
@@ -102,11 +103,18 @@ namespace LibraryManagementSystem
             currentUser = null;
             this.labelUserName.Content = "Guest";
             this.LoginButton.Content = "Login";
+            this.lendingHistoryButton.IsEnabled = false;
         }
 
         public void AddBook(Book book)
         {
             booksToBeDisplayed.Add(book);
+        }
+
+        private void lendingHistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            LendingHistoryWindow lendingHistoryWindow = new LendingHistoryWindow(currentUser);
+            lendingHistoryWindow.Show();
         }
     }
 }
