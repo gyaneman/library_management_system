@@ -50,11 +50,6 @@ namespace LibraryManagementSystem
             booksToBeDisplayed = new ObservableCollection<Book>(Book.GetAllBooks());
         }
 
-        public void dataGrid_SelectionChanged(object sender, EventArgs e)
-        {
-            Console.WriteLine("dataGrid selection changed");
-        }
-
         private void OpenBookCreationWindowButton_Click(object sender, RoutedEventArgs e)
         {
             var bookCreationWindow = new BookCreationWindow();
