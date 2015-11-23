@@ -159,7 +159,7 @@ namespace LibraryManagementSystem.Models
         /// </summary>
         /// <param name="_book">貸し出す本</param>
         /// <param name="_user">貸し出す相手のアカウント</param>
-        /// <returns></returns>
+        /// <returns>成功か否か</returns>
         public static Result Create(Book _book, User _user)
         {
             return Create(_book, _user.Id);
@@ -170,7 +170,7 @@ namespace LibraryManagementSystem.Models
         /// </summary>
         /// <param name="_book">貸し出す本</param>
         /// <param name="_userId">貸し出す相手のユーザID</param>
-        /// <returns></returns>
+        /// <returns>成功か否か</returns>
         public static Result Create(Book _book, string _userId)
         {
             int c = GetDueDateOfBook(_book).Count;
@@ -201,7 +201,7 @@ namespace LibraryManagementSystem.Models
         /// <summary>
         /// 本を返却する
         /// </summary>
-        /// <returns></returns>
+        /// <returns>成功か否か</returns>
         public Result Return()
         {
             if (Id == null)
@@ -230,7 +230,7 @@ namespace LibraryManagementSystem.Models
         /// 本の返却状況を返す
         /// </summary>
         /// <param name="_book"></param>
-        /// <returns></returns>
+        /// <returns>成功か否か</returns>
         public static List<LendingHistoryRecord> GetDueDateOfBook(Book _book)
         {
             List<LendingHistoryRecord> result = new List<LendingHistoryRecord>();
@@ -270,7 +270,7 @@ namespace LibraryManagementSystem.Models
         /// ユーザの未返却本一覧をDBから取得
         /// </summary>
         /// <param name="_user">ユーザ</param>
-        /// <returns></returns>
+        /// <returns>取得した貸出履歴のリスト</returns>
         public static List<LendingHistoryRecord> GetUnreturnedBookFromUser(User _user)
         {
             List<LendingHistoryRecord> result = new List<LendingHistoryRecord>();
@@ -279,7 +279,6 @@ namespace LibraryManagementSystem.Models
                 cn.Open();
                 SQLiteCommand cmd = cn.CreateCommand();
                 cmd.CommandText = "SELECT * FROM " + TABLE_NAME
-                    //+ " INNER JOIN user ON lending_history.user_id"
                     + " INNER JOIN book ON lending_history.book_id = book.id"
                     + " WHERE completion_date IS NULL"
                     + " AND user_id = @USER_ID"
@@ -290,14 +289,6 @@ namespace LibraryManagementSystem.Models
                 {
                     while (reader.Read())
                     {
-                        /*User user = new User(
-                            reader["user.id"].ToString(),
-                            reader["user.name"].ToString(),
-                            reader["user.email"].ToString(),
-                            reader["user.password"].ToString(),
-                            reader["user.created_at"].ToString(),
-                            reader["user.edited_at"].ToString()
-                            );*/
                         Book _book = new Book(
                         reader[7].ToString(),   // id
                         reader[8].ToString(),   // isbn

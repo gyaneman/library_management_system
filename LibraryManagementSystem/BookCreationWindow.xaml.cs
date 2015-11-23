@@ -29,6 +29,11 @@ namespace LibraryManagementSystem
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 新規図書登録用のボタンが押された時のハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonBookCreation_Click(object sender, RoutedEventArgs e)
         {
             if (this.textBoxTitle.Text == string.Empty)
@@ -49,11 +54,22 @@ namespace LibraryManagementSystem
             this.Close();
         }
 
+        /// <summary>
+        /// キャンセルボタンを押された時のハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// ISBNで検索を行うボタンが押された時のハンドラ
+        /// 楽天APIで検索する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSearchFromIsbn_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Search From ISBN");
