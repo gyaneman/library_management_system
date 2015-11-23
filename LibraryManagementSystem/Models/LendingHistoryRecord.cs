@@ -18,11 +18,13 @@ namespace LibraryManagementSystem.Models
         /// 貸したユーザ
         /// </summary>
         private User user = null;
+        private string userId;
 
         /// <summary>
         /// 貸した本
         /// </summary>
         private Book book = null;
+        private string bookId;
 
         /// <summary>
         /// 返却予定日
@@ -46,6 +48,11 @@ namespace LibraryManagementSystem.Models
             {
                 return user;
             }
+            set
+            {
+                user = value;
+                userId = value.Id;
+            }
         }
 
         /// <summary>
@@ -56,6 +63,11 @@ namespace LibraryManagementSystem.Models
             get
             {
                 return book;
+            }
+            set
+            {
+                book = value;
+                bookId = value.Id;
             }
         }
 
@@ -116,11 +128,87 @@ namespace LibraryManagementSystem.Models
         }
 
         /// <summary>
+        /// ユーザインスタンスがないがIDは取得できるとき
+        /// `メモリの無駄を省くため
+        /// </summary>
+        /// <param name="_id"></param>
+        /// <param name="_userId"></param>
+        /// <param name="_bookId"></param>
+        /// <param name="_returnDate"></param>
+        /// <param name="_completionDate"></param>
+        /// <param name="_created_at"></param>
+        /// <param name="_edited_at"></param>
+        private LendingHistoryRecord(
+            string _id,
+            string _userId,
+            Book _book,
+            string _returnDate,
+            string _completionDate,
+            string _created_at,
+            string _edited_at
+            ) : base(_id, _created_at, _edited_at)
+        {
+            this.userId = _userId;
+            this.book = _book;
+            this.returnDate = _returnDate;
+            this.completionDate = _completionDate;
+        }
+
+        public static void CreateRecord(Book _book, User _user)
+        {
+            CreateRecord(_book, _user.Id);
+        }
+
+        public static void CreateRecord(Book _book, string _userId)
+        {
+
+        }
+        
+        /// <summary>
+        /// 本の返却状況を返す
+        /// </summary>
+        /// <param name="_book"></param>
+        /// <returns></returns>
+        public static List<LendingHistoryRecord> GetDueDateOfBook(Book _book)
+        {
+            List<LendingHistoryRecord> result = new List<LendingHistoryRecord>();
+            using (SQLiteConnection cn = new SQLiteConnection(dbConStr))
+            {
+                cn.Open();
+                SQLiteCommand cmd = cn.CreateCommand();
+                cmd.CommandText = "SELECT * FROM " + TABLE_NAME
+                    + " WHERE completion_date IS NULL"
+                    + " AND book_id = @BOOK_ID"
+                    + ";";
+
+                cmd.Parameters.Add(new SQLiteParameter("@BOOK_ID", _book.Id));
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        LendingHistoryRecord history = new LendingHistoryRecord(
+                            reader[0].ToString(),   // id
+                            reader[1].ToString(),   // user_id
+                            _book,
+                            reader[3].ToString(),   // return_date
+                            reader[4].ToString(),   // completion_date
+                            reader[5].ToString(),   // created_at
+                            reader[6].ToString()    // edited_at
+                            );
+                        history.Show();
+                        result.Add(history);
+                    }
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
         /// ユーザの未返却本一覧をDBから取得
         /// </summary>
         /// <param name="_user">ユーザ</param>
         /// <returns></returns>
-        public static List<LendingHistoryRecord> GetUnreturnedBookOfUser(User _user)
+        public static List<LendingHistoryRecord> GetUnreturnedBookFromUser(User _user)
         {
             List<LendingHistoryRecord> result = new List<LendingHistoryRecord>();
             using (SQLiteConnection cn = new SQLiteConnection(dbConStr))
@@ -181,7 +269,15 @@ namespace LibraryManagementSystem.Models
         {
             Console.WriteLine("============================");
             Console.WriteLine("Lending history");
-            user.Show();
+            if (user == null)
+            {
+                Console.WriteLine("User ID       : " + userId);
+            }
+            else
+            {
+                user.Show();
+            }
+
             book.Show();
             Console.WriteLine("DueDate:  " + returnDate);
             if (completionDate == null)

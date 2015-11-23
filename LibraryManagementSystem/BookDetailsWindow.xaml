@@ -1,0 +1,22 @@
+﻿<Window x:Class="LibraryManagementSystem.BookDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManagementSystem"
+        mc:Ignorable="d"
+        Title="BookDetailsWindow" Height="408.238" Width="534.375">
+    <Grid>
+        <Label x:Name="labelTitle" Content="Title" HorizontalAlignment="Left" Margin="28,23,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="labelAuthor" Content="Author" HorizontalAlignment="Left" Margin="28,53,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="labelIsbn" Content="ISBN" HorizontalAlignment="Left" Margin="28,83,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="labelPublisher" Content="Publisher" HorizontalAlignment="Left" Margin="28,113,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="labelTitleContent" Content="{Binding Title}" HorizontalAlignment="Stretch"  Margin="133,23,0,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
+        <Label x:Name="labelAuthorContent" Content="{Binding Author}" HorizontalAlignment="Stretch" Margin="133,53,0,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
+        <Label x:Name="labelIsbnContent" Content="{Binding Isbn}" HorizontalAlignment="Stretch" Margin="133,83,0,0" VerticalAlignment="Top" Height="25" Width="Auto"/>
+        <Label x:Name="labelPublisherContent" Content="{Binding Publisher}" HorizontalAlignment="Stretch" Margin="133,113,0,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
+        <Label x:Name="labelLendInfo" Content="Lend Info" HorizontalAlignment="Left" Margin="28,168,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="labelLendInfoContent" Content="{Binding LendInfo}" HorizontalAlignment="Stretch" Margin="133,168,0,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
+        <Button x:Name="buttonRental" Content="Borrow This" HorizontalAlignment="Left" Margin="52,221,0,0" VerticalAlignment="Top" Width="100" Height="127" Click="buttonRental_Click"/>
+    </Grid>
+</Window>

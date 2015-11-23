@@ -128,7 +128,8 @@ namespace LibraryManagementSystem
         private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var book = (Book)this.dataGrid.SelectedItem as Book;
-
+            var bookDetailsWindow = new BookDetailsWindow(book, currentUser);
+            bookDetailsWindow.ShowDialog();
         }
     }
 }
