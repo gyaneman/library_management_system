@@ -39,7 +39,7 @@ namespace LibraryManagementSystem
             var history = LendingHistoryRecord.GetDueDateOfBook(_book);
             if (history.Count == 1)
             {
-                this.dueDateContent = history[0].DueDate;
+                CanNotBorrow(history[0].DueDate);
             }
             else
             {
@@ -70,8 +70,18 @@ namespace LibraryManagementSystem
                 MessageBoxResult.Yes
                 ) == MessageBoxResult.Yes)
             {
-
+                if (LendingHistoryRecord.Create(book, user) == Result.Success)
+                {
+                    MessageBox.Show("Thank you!!!", "Complete");
+                    CanNotBorrow("You're borrowing.");
+                }
             }
+        }
+
+        private void CanNotBorrow(string _content)
+        {
+            this.dueDateContent = _content;
+            this.buttonRental.IsEnabled = false;
         }
     }
 }

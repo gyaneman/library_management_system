@@ -154,14 +154,37 @@ namespace LibraryManagementSystem.Models
             this.completionDate = _completionDate;
         }
 
-        public static void CreateRecord(Book _book, User _user)
+        public static Result Create(Book _book, User _user)
         {
-            CreateRecord(_book, _user.Id);
+            return Create(_book, _user.Id);
         }
 
-        public static void CreateRecord(Book _book, string _userId)
+        public static Result Create(Book _book, string _userId)
         {
+            int c = GetDueDateOfBook(_book).Count;
+            if (c != 0)
+            {
+                Console.WriteLine(c);
+                return Result.Failed;
+            }
 
+            string ret;
+            using (SQLiteConnection cn = new SQLiteConnection(dbConStr))
+            {
+                cn.Open();
+                SQLiteCommand cmd = cn.CreateCommand();
+                cmd.CommandText =
+                    "INSERT INTO "
+                    + TABLE_NAME + " (user_id, book_id, return_date, created_at, edited_at) "
+                    + "VALUES (@USER_ID, @BOOK_ID, DATETIME('now', '+7 days'), DATETIME('now'), DATETIME('now'))";
+
+                cmd.Parameters.Add(new SQLiteParameter("@USER_ID", _userId));
+                cmd.Parameters.Add(new SQLiteParameter("@BOOK_ID", _book.Id));
+                cmd.ExecuteNonQuery();
+                cn.Close();
+            }
+
+            return Result.Success;
         }
         
         /// <summary>
