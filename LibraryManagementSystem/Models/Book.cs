@@ -174,6 +174,7 @@ namespace LibraryManagementSystem.Models
                         result.Add(book);
                     }
                 }
+                cn.Close();
             }
             return result;
         }

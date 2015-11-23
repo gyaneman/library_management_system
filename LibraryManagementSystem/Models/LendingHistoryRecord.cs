@@ -154,11 +154,23 @@ namespace LibraryManagementSystem.Models
             this.completionDate = _completionDate;
         }
 
+        /// <summary>
+        /// 貸し出し情報を追加する
+        /// </summary>
+        /// <param name="_book">貸し出す本</param>
+        /// <param name="_user">貸し出す相手のアカウント</param>
+        /// <returns></returns>
         public static Result Create(Book _book, User _user)
         {
             return Create(_book, _user.Id);
         }
 
+        /// <summary>
+        /// 貸し出し情報を追加する
+        /// </summary>
+        /// <param name="_book">貸し出す本</param>
+        /// <param name="_userId">貸し出す相手のユーザID</param>
+        /// <returns></returns>
         public static Result Create(Book _book, string _userId)
         {
             int c = GetDueDateOfBook(_book).Count;
@@ -167,8 +179,7 @@ namespace LibraryManagementSystem.Models
                 Console.WriteLine(c);
                 return Result.Failed;
             }
-
-            string ret;
+            
             using (SQLiteConnection cn = new SQLiteConnection(dbConStr))
             {
                 cn.Open();
@@ -184,6 +195,34 @@ namespace LibraryManagementSystem.Models
                 cn.Close();
             }
 
+            return Result.Success;
+        }
+
+        /// <summary>
+        /// 本を返却する
+        /// </summary>
+        /// <returns></returns>
+        public Result Return()
+        {
+            if (Id == null)
+            {
+                return Result.Failed;
+            }
+
+            using (SQLiteConnection cn = new SQLiteConnection(dbConStr))
+            {
+                cn.Open();
+                SQLiteCommand cmd = cn.CreateCommand();
+                cmd.CommandText =
+                    @"UPDATE "
+                    + TABLE_NAME
+                    + @" SET completion_date = DATETIME('now')"
+                    + @" WHERE id = @ID";
+                cmd.Parameters.Add(new SQLiteParameter("@ID", Id));
+                cmd.ExecuteNonQuery();
+                cn.Close();
+            }
+            
             return Result.Success;
         }
         
@@ -222,6 +261,7 @@ namespace LibraryManagementSystem.Models
                         result.Add(history);
                     }
                 }
+                cn.Close();
             }
             return result;
         }
@@ -281,6 +321,7 @@ namespace LibraryManagementSystem.Models
                         result.Add(history);
                     }
                 }
+                cn.Close();
             }
             return result;
         }

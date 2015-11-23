@@ -33,5 +33,30 @@ namespace LibraryManagementSystem
                 new ObservableCollection<LendingHistoryRecord>(history);
             this.dataGrid.ItemsSource = lendingHistoryToBeDisplayed;
         }
+
+        private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var lendingRecord = this.dataGrid.SelectedItem as LendingHistoryRecord;
+            lendingRecord.Return();
+            if (lendingRecord == null)
+            {
+                return;
+            }
+
+            if (MessageBox.Show(
+                "Are you shure you want to return this book?",
+                "Return book", 
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question,
+                MessageBoxResult.Yes
+                ) == MessageBoxResult.Yes)
+            {
+                if (lendingRecord.Return() == Result.Success)
+                {
+                    lendingHistoryToBeDisplayed.Remove(lendingRecord);
+                    MessageBox.Show("Return procedure was completed. Thank you!!", "Completed", MessageBoxButton.OK);
+                }
+            }
+        }
     }
 }
