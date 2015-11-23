@@ -28,7 +28,7 @@ namespace LibraryManagementSystem
         {
             InitializeComponent();
             user = _user;
-            var history = LendingHistoryRecord.GetUnreturnedBookOfUser(_user);
+            var history = LendingHistoryRecord.GetUnreturnedBookFromUser(_user);
             lendingHistoryToBeDisplayed = 
                 new ObservableCollection<LendingHistoryRecord>(history);
             this.dataGrid.ItemsSource = lendingHistoryToBeDisplayed;

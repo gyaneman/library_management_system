@@ -10,8 +10,8 @@
         <DataGrid x:Name="dataGrid" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Top" Height="203" Width="Auto" ItemsSource="{Binding Path=users}" AutoGenerateColumns="False" MouseDoubleClick="dataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="150"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="ButtonCreationNewAccount" Content="CreateNewAccount" HorizontalAlignment="Left" Margin="21,232,0,0" VerticalAlignment="Top" Width="128" Click="ButtonCreationNewAccount_Click"/>
