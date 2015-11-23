@@ -115,6 +115,11 @@ namespace LibraryManagementSystem.Models
             this.completionDate = _completionDate;
         }
 
+        /// <summary>
+        /// ユーザの未返却本一覧をDBから取得
+        /// </summary>
+        /// <param name="_user">ユーザ</param>
+        /// <returns></returns>
         public static List<LendingHistoryRecord> GetUnreturnedBookOfUser(User _user)
         {
             List<LendingHistoryRecord> result = new List<LendingHistoryRecord>();
@@ -169,20 +174,23 @@ namespace LibraryManagementSystem.Models
             return result;
         }
 
+        /// <summary>
+        /// デバッグ用
+        /// </summary>
         public void Show()
         {
             Console.WriteLine("============================");
             Console.WriteLine("Lending history");
             user.Show();
             book.Show();
-            Console.WriteLine(returnDate);
+            Console.WriteLine("DueDate:  " + returnDate);
             if (completionDate == null)
             {
-                Console.WriteLine("NULL");
+                Console.WriteLine("CompletionDate:    NULL");
             }
             else
             {
-                Console.WriteLine(completionDate);
+                Console.WriteLine("CompletionDate:    " + completionDate);
             }
         }
     }

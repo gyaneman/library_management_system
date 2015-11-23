@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="555.029" Width="645.0">
     <Grid Width="Auto" Height="Auto" Margin="0,0,2,0">
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Top" Height="275" Width="Auto" ItemsSource="{Binding Path=books}" AutoGenerateColumns="False" SelectionChanged="dataGrid_SelectionChanged">
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Top" Height="275" Width="Auto" ItemsSource="{Binding Path=books}" AutoGenerateColumns="False" SelectionChanged="dataGrid_SelectionChanged" MouseDoubleClick="dataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <!--<DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" IsReadOnly="True" Width="100" />-->
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" IsReadOnly="True" Width="300" />
