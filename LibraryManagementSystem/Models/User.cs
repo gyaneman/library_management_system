@@ -115,6 +115,7 @@ namespace LibraryManagementSystem.Models
                         users.Add(user);
                     }
                 }
+                cn.Close();
             }
             return users;
         }
