@@ -106,10 +106,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LendingHistoryWindow.xaml.cs">
+      <DependentUpon>LendingHistoryWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\LendingHistory.cs" />
+    <Compile Include="Models\LendingHistoryRecord.cs" />
     <Compile Include="RegistrationAccountWindow.xaml.cs">
       <DependentUpon>RegistrationAccountWindow.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <DependentUpon>UserListWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="BookCreationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LendingHistoryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

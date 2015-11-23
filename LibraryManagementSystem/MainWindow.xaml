@@ -5,22 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="555.029" Width="1152.164">
+        Title="MainWindow" Height="555.029" Width="645.0">
     <Grid Width="Auto" Height="Auto" Margin="0,0,2,0">
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Top" Height="275" Width="Auto" ItemsSource="{Binding Path=books}" AutoGenerateColumns="False" SelectionChanged="dataGrid_SelectionChanged">
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Top" Height="275" Width="Auto" ItemsSource="{Binding Path=books}" AutoGenerateColumns="False" SelectionChanged="dataGrid_SelectionChanged" MouseDoubleClick="dataGrid_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Title" Binding="{Binding Title}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Author" Binding="{Binding Author}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Series" Binding="{Binding Series}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Created" Binding="{Binding CreatedAt}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Edited" Binding="{Binding EditedAt}" IsReadOnly="True" />
+                <!--<DataGridTextColumn Header="ISBN" Binding="{Binding Isbn}" IsReadOnly="True" Width="100" />-->
+                <DataGridTextColumn Header="Title" Binding="{Binding Title}" IsReadOnly="True" Width="300" />
+                <DataGridTextColumn Header="Author" Binding="{Binding Author}" IsReadOnly="True" Width="150" />
+                <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}" IsReadOnly="True" Width="150" />
+                <!--<DataGridTextColumn Header="Series" Binding="{Binding Series}" IsReadOnly="True" Width="100" />
+                <DataGridTextColumn Header="Created" Binding="{Binding CreatedAt}" IsReadOnly="True" Width="100" />
+                <DataGridTextColumn Header="Edited" Binding="{Binding EditedAt}" IsReadOnly="True" Width="100" />-->
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="OpenBookCreationWindowButton" Content="New Book" HorizontalAlignment="Left" Margin="84,333,0,0" VerticalAlignment="Top" Width="75" Click="OpenBookCreationWindowButton_Click"/>
-        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Margin="148,394,0,0" VerticalAlignment="Top" Width="76" Click="LoginButton_Click"/>
+        <Button x:Name="OpenBookCreationWindowButton" Content="New Book" HorizontalAlignment="Left" Margin="40,312,0,0" VerticalAlignment="Top" Width="102" Click="OpenBookCreationWindowButton_Click" Height="56"/>
+        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Margin="40,414,0,0" VerticalAlignment="Top" Width="102" Click="LoginButton_Click" Height="30"/>
         <Label x:Name="labelUserName" Content="Guest" HorizontalAlignment="Left" Margin="10,468,0,0" VerticalAlignment="Top" Height="46" Width="262" FontSize="29.333" FontWeight="Bold"/>
+        <Button x:Name="lendingHistoryButton" Content="Lending History" HorizontalAlignment="Left" Margin="296,350,0,0" VerticalAlignment="Top" Width="178" Height="94" Click="lendingHistoryButton_Click" IsEnabled="False"/>
 
     </Grid>
 </Window>

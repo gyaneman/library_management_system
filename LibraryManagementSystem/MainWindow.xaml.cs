@@ -95,18 +95,40 @@ namespace LibraryManagementSystem
             currentUser = user;
             this.labelUserName.Content = currentUser.Name;
             this.LoginButton.Content = "Logout";
+            this.lendingHistoryButton.IsEnabled = true;
         }
 
+        /// <summary>
+        /// ログアウト時に呼び出す
+        /// </summary>
         public void Logout()
         {
             currentUser = null;
             this.labelUserName.Content = "Guest";
             this.LoginButton.Content = "Login";
+            this.lendingHistoryButton.IsEnabled = false;
         }
 
         public void AddBook(Book book)
         {
             booksToBeDisplayed.Add(book);
+        }
+
+        private void lendingHistoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            LendingHistoryWindow lendingHistoryWindow = new LendingHistoryWindow(currentUser);
+            lendingHistoryWindow.Show();
+        }
+
+        /// <summary>
+        /// データグリッド上のアイテムをダブルクリックしたとき
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var book = (Book)this.dataGrid.SelectedItem as Book;
+
         }
     }
 }
