@@ -61,8 +61,13 @@ namespace LibraryManagementSystem
                 Author = book.Author,
                 Isbn = book.Isbn,
                 Publisher = book.Publisher,
-                LendInfo = dueDateContent
+                LendInfo = dueDateContent,
+                Caption = book.Caption,
             };
+            if (book.ImageUrl != null)
+            {
+                this.imageBox.Source = new BitmapImage(new Uri(book.ImageUrl));
+            }
         }
 
         /// <summary>

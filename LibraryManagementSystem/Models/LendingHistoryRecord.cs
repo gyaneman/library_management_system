@@ -296,8 +296,10 @@ namespace LibraryManagementSystem.Models
                         reader[10].ToString(),  // author
                         reader[11].ToString(),  // publisher
                         reader[12].ToString(),  // series
-                        reader[13].ToString(),  // created_at
-                        reader[14].ToString()   // edited_at
+                        reader[13].ToString(),  // caption
+                        reader[14].ToString(),  // image_url
+                        reader[15].ToString(),  // created_at
+                        reader[16].ToString()   // edited_at
                         );
                         LendingHistoryRecord history = new LendingHistoryRecord(
                             reader[0].ToString(),   // id
