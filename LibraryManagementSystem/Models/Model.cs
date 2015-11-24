@@ -24,6 +24,10 @@ namespace LibraryManagementSystem.Models
 
         static string dbPath = "c:\\Users\\kataoka\\Application\\dbdata\\library_management_system.sqlite3";
         protected static string dbConStr = "Data Source=" + dbPath + ";Version=3;";
+
+        private static string[] tableNames = { "user", "series", "book", "lending_history" };
+
+
         State state;
         private string id;
         private string created_at;
@@ -47,8 +51,6 @@ namespace LibraryManagementSystem.Models
             using (SQLiteConnection cn = new SQLiteConnection(dbConStr))
             using (SQLiteCommand cmd = cn.CreateCommand())
             {
-                string[] tableNames = { "user", "series", "book", "lending_history" };
-
                 string tableCheckStr =
                     @"select * from sqlite_master where type='table' and name='user';";
                 string createUserTableStr =
