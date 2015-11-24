@@ -71,7 +71,8 @@ namespace LibraryManagementSystem
             user.Name = name;
             user.Email = email;
             user.Password = password;
-            if (User.Save(user) == Result.Success)
+            user = User.Save(user);
+            if (user != null)
             {
                 registrationAccountDelegate(user);
             }

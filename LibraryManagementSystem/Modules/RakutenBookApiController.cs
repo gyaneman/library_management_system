@@ -26,12 +26,19 @@ namespace LibraryManagementSystem.Modules
         /// <returns>Typeのインスタンス</returns>
         public static Type GetBookDataFromIsbn<Type>(string _isbn)
         {
-            var req = WebRequest.CreateHttp(rakutenApiUrl + _isbn);
-            req.Method = "GET";
-            req.ContentType = "application/json";
-            var res = req.GetResponse();
-            var serializer = new JsonSerializer();
-            return serializer.Deserialize<Type>(new JsonTextReader(new StreamReader(res.GetResponseStream())));
+            try
+            {
+                var req = WebRequest.CreateHttp(rakutenApiUrl + _isbn);
+                req.Method = "GET";
+                req.ContentType = "application/json";
+                var res = req.GetResponse();
+                var serializer = new JsonSerializer();
+                return serializer.Deserialize<Type>(new JsonTextReader(new StreamReader(res.GetResponseStream())));
+            }
+            catch (Exception)
+            {
+                return default(Type);
+            }
         }
     }
 }

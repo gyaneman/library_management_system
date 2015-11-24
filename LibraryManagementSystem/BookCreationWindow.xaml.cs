@@ -77,6 +77,11 @@ namespace LibraryManagementSystem
         private void buttonSearchFromIsbn_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Search From ISBN");
+
+            if (this.textBoxIsbn.Text == "")
+            {
+                return;
+            }
             
             List<Book> books = Book.GetBookFromIsbn(this.textBoxIsbn.Text);
             if (books.Count == 1)
