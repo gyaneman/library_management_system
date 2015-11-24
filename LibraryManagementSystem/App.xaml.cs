@@ -13,5 +13,9 @@ namespace LibraryManagementSystem
     /// </summary>
     public partial class App : Application
     {
+        void Init(object sender, StartupEventArgs e)
+        {
+            Models.Model.InitDB();
+        }
     }
 }
