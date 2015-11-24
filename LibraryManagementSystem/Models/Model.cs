@@ -21,8 +21,8 @@ namespace LibraryManagementSystem.Models
             Recorded,   // DBから取得・DBに保存してから、まだ変更されていない状態
             Edited      // 変更されてからまだ保存されていない状態
         }
-
-        static string dbPath = "c:\\Users\\kataoka\\Application\\dbdata\\library_management_system.sqlite3";
+        
+        static string dbPath = @".\library_management_system.sqlite3";
         protected static string dbConStr = "Data Source=" + dbPath + ";Version=3;";
 
         private static string[] tableNames = { "user", "series", "book", "lending_history" };
