@@ -24,6 +24,8 @@ namespace LibraryManagementSystem
     {
         public CreateBookDelegate createBookDelegate;
 
+        string imageUrl;
+
         public BookCreationWindow()
         {
             InitializeComponent();
@@ -47,6 +49,8 @@ namespace LibraryManagementSystem
             newBook.Title = this.textBoxTitle.Text;
             newBook.Author = this.textBoxAuthor.Text;
             newBook.Publisher = this.textBoxPublisher.Text;
+            newBook.Caption = this.textBoxCaption.Text;
+            newBook.ImageUrl = this.imageUrl;
             if (Book.Save(newBook) == Result.Success)
             {
                 createBookDelegate(newBook);
@@ -82,6 +86,9 @@ namespace LibraryManagementSystem
                 this.textBoxPublisher.Text = book.Publisher;
                 this.textBoxAuthor.Text = book.Author;
                 this.textBoxIsbn.Text = book.Isbn;
+                this.textBoxCaption.Text = book.Caption;
+                this.imageUrl = book.ImageUrl;
+                this.imageBox.Source = new BitmapImage(new Uri(this.imageUrl));
             }
             foreach(Book book in books)
             {

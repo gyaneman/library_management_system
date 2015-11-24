@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="BookCreationWindow" Height="334.615" Width="518.343">
+        Title="BookCreationWindow" Height="394.237" Width="558.496">
     <Grid Margin="0,0,2,2">
         <Label x:Name="labelIsbn" Content="ISBN" HorizontalAlignment="Left" Margin="27,16,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.333,0.259" Width="76"/>
         <TextBox x:Name="textBoxIsbn" HorizontalAlignment="Left" Height="23" Margin="115,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207"/>
@@ -16,10 +16,13 @@
         <TextBox x:Name="textBoxAuthor" HorizontalAlignment="Left" Height="23" Margin="115,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207"/>
         <Label x:Name="labelPublisher" Content="Publisher" HorizontalAlignment="Left" Margin="27,102,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.029,-0.298"/>
         <TextBox x:Name="textBoxPublisher" HorizontalAlignment="Left" Height="23" Margin="115,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207"/>
-        <Button x:Name="buttonBookCreation" Content="OK" HorizontalAlignment="Left" Margin="262,219,0,0" VerticalAlignment="Top" Width="89" Height="19" Click="buttonBookCreation_Click"/>
-        <Button x:Name="buttonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="382,219,0,0" VerticalAlignment="Top" Width="75" Click="buttonCancel_Click"/>
+        <Button x:Name="buttonBookCreation" Content="OK" HorizontalAlignment="Left" Margin="440,304,0,0" VerticalAlignment="Top" Width="98" Height="19" Click="buttonBookCreation_Click"/>
+        <Button x:Name="buttonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="346,304,0,0" VerticalAlignment="Top" Width="78" Click="buttonCancel_Click" Height="19"/>
         <Label x:Name="labelWarningTitle" Content="Title is empty. Please enter title of book." HorizontalAlignment="Left" Margin="327,46,0,0" VerticalAlignment="Top" Width="153" Visibility="Hidden"/>
-        
+        <Image x:Name="imageBox" HorizontalAlignment="Left" Height="200" Margin="338,71,0,0" VerticalAlignment="Top" Width="200"/>
+        <Label x:Name="labelCaption" Content="Caption" HorizontalAlignment="Left" Margin="27,132,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBlock x:Name="textBoxCaption" HorizontalAlignment="Left" Margin="66,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="189" Width="256"/>
+
 
     </Grid>
 </Window>

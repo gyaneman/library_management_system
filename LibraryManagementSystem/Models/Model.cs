@@ -54,11 +54,11 @@ namespace LibraryManagementSystem.Models
                 string tableCheckStr =
                     @"select * from sqlite_master where type='table' and name='user';";
                 string createUserTableStr =
-                    @"CREATE TABLE user ( `id`	INTEGER NOT NULL, `name`	TEXT NOT NULL UNIQUE,   `email`	TEXT NOT NULL UNIQUE,   `password`	TEXT NOT NULL UNIQUE,   `created_at`	TEXT,   `edited_at`	TEXT,   PRIMARY KEY(id) ); ";
+                    @"CREATE TABLE user ( `id` INTEGER NOT NULL, `name` TEXT NOT NULL UNIQUE, `email` TEXT NOT NULL UNIQUE, `password` TEXT NOT NULL UNIQUE, `created_at` TEXT, `edited_at` TEXT, PRIMARY KEY(id) );";
                 string createCategoryTableStr =
-                    @"CREATE TABLE `series` (	`id`	INTEGER NOT NULL,	`name`	TEXT NOT NULL UNIQUE,	PRIMARY KEY(id));";
+                    @"CREATE TABLE `series` ( `id` INTEGER NOT NULL, `name` TEXT NOT NULL UNIQUE, PRIMARY KEY(id));";
                 string createBookTableStr =
-                    @"CREATE TABLE book (`id` INTEGER NOT NULL, `isbn` INTEGER UNIQUE, `title` TEXT NOT NULL UNIQUE, `author` TEXT, `publisher`	TEXT, `series` INTEGER,	`created_at` TEXT, `edited_at` TEXT, PRIMARY KEY(id), FOREIGN KEY(`series`) REFERENCES series(id)); ";
+                    @"CREATE TABLE book (`id` INTEGER NOT NULL, `isbn` INTEGER UNIQUE, `title` TEXT NOT NULL UNIQUE, `author` TEXT, `publisher`	TEXT, `series` INTEGER,	`caption` TEXT, `image_url` TEXT, `created_at` TEXT, `edited_at` TEXT, PRIMARY KEY(id), FOREIGN KEY(`series`) REFERENCES series(id)); ";
                 string createLendingHistoryTableStr =
                     @"CREATE TABLE lending_history (	`id`	INTEGER,	`user_id`	INTEGER NOT NULL,	`book_id`	INTEGER NOT NULL,	`return_date`	TEXT,	`completion_date`	TEXT,	`created_at`	TEXT NOT NULL,	`edited_at`	TEXT NOT NULL,	PRIMARY KEY(id),    FOREIGN KEY(`user_id`) REFERENCES user(id),    FOREIGN KEY(`book_id`) REFERENCES book(id)); ";
                 cn.Open();
@@ -73,7 +73,6 @@ namespace LibraryManagementSystem.Models
                     {
                         while (reader.Read())
                         {
-                            Console.WriteLine("No table " + tableName);
                             flag = true;
                         }
                     }

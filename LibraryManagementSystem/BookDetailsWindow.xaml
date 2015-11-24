@@ -11,12 +11,15 @@
         <Label x:Name="labelAuthor" Content="Author" HorizontalAlignment="Left" Margin="28,53,0,0" VerticalAlignment="Top" Width="100"/>
         <Label x:Name="labelIsbn" Content="ISBN" HorizontalAlignment="Left" Margin="28,83,0,0" VerticalAlignment="Top" Width="100"/>
         <Label x:Name="labelPublisher" Content="Publisher" HorizontalAlignment="Left" Margin="28,113,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label x:Name="labelTitleContent" Content="{Binding Title}" HorizontalAlignment="Stretch"  Margin="133,23,0,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
-        <Label x:Name="labelAuthorContent" Content="{Binding Author}" HorizontalAlignment="Stretch" Margin="133,53,0,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
-        <Label x:Name="labelIsbnContent" Content="{Binding Isbn}" HorizontalAlignment="Stretch" Margin="133,83,0,0" VerticalAlignment="Top" Height="25" Width="Auto"/>
-        <Label x:Name="labelPublisherContent" Content="{Binding Publisher}" HorizontalAlignment="Stretch" Margin="133,113,0,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
-        <Label x:Name="labelLendInfo" Content="Lend Info" HorizontalAlignment="Left" Margin="28,168,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label x:Name="labelLendInfoContent" Content="{Binding LendInfo}" HorizontalAlignment="Stretch" Margin="133,168,0,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
-        <Button x:Name="buttonRental" Content="Borrow This" HorizontalAlignment="Left" Margin="52,221,0,0" VerticalAlignment="Top" Width="100" Height="127" Click="buttonRental_Click"/>
+        <Label x:Name="labelTitleContent" Content="{Binding Title}" HorizontalAlignment="Stretch"  Margin="133,23,215,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
+        <Label x:Name="labelAuthorContent" Content="{Binding Author}" HorizontalAlignment="Stretch" Margin="133,53,215,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
+        <Label x:Name="labelIsbnContent" Content="{Binding Isbn}" HorizontalAlignment="Stretch" Margin="133,83,215,0" VerticalAlignment="Top" Height="25" Width="Auto"/>
+        <Label x:Name="labelPublisherContent" Content="{Binding Publisher}" HorizontalAlignment="Stretch" Margin="133,113,215,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
+        <Label x:Name="labelLendInfo" Content="Lend Info" HorizontalAlignment="Left" Margin="28,305,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="labelLendInfoContent" Content="{Binding LendInfo}" HorizontalAlignment="Stretch" Margin="133,305,164,0" VerticalAlignment="Top" Width="Auto" Height="25"/>
+        <Button x:Name="buttonRental" Content="Borrow This" HorizontalAlignment="Left" Margin="383,215,0,0" VerticalAlignment="Top" Width="117" Height="115" Click="buttonRental_Click"/>
+        <Image x:Name="imageBox" HorizontalAlignment="Left" Height="200" Margin="316,10,0,0" VerticalAlignment="Top" Width="200"/>
+        <Label x:Name="labelCaption" Content="Caption" HorizontalAlignment="Left" Margin="28,143,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBlock x:Name="textBlockCaptionContent" Text="{Binding Caption}" HorizontalAlignment="Left" Margin="61,173,0,0" VerticalAlignment="Top" Height="116" Width="250" TextWrapping="Wrap"/>
     </Grid>
 </Window>

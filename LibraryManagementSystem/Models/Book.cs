@@ -23,6 +23,8 @@ namespace LibraryManagementSystem.Models
         private string author = null;
         private string publisher = null;
         private string series = null;
+        private string caption = null;
+        private string image_url = null;
 
         /// <summary>
         /// 新しいBookを登録する時のインスタンス作成
@@ -42,6 +44,8 @@ namespace LibraryManagementSystem.Models
         /// <param name="_author">筆者</param>
         /// <param name="_publisher">出版社</param>
         /// <param name="_series">シリーズものであればそのID. シリーズものでなければnull</param>
+        /// <param name="_caption">本の説明</param>
+        /// <param name="_image_url">画像のURL</param>
         /// <param name="_created_at">レコード作成日時</param>
         /// <param name="_edited_at">データの最終変更日時</param>
         public Book(
@@ -51,6 +55,8 @@ namespace LibraryManagementSystem.Models
             string _author,
             string _publisher,
             string _series,
+            string _caption,
+            string _image_url,
             string _created_at,
             string _edited_at)
             : base(_id, _created_at, _edited_at)
@@ -61,6 +67,8 @@ namespace LibraryManagementSystem.Models
             this.author = _author;
             this.publisher = _publisher;
             this.series = _series;
+            this.caption = _caption;
+            this.image_url = _image_url;
         }
 
         /// <summary>
@@ -145,6 +153,38 @@ namespace LibraryManagementSystem.Models
         }
 
         /// <summary>
+        /// captionのgetter setter
+        /// </summary>
+        public string Caption
+        {
+            set
+            {
+                this.caption = value;
+                Edited();
+            }
+            get
+            {
+                return this.caption;
+            }
+        }
+
+        /// <summary>
+        /// image_urlのgetter setter
+        /// </summary>
+        public string ImageUrl
+        {
+            set
+            {
+                this.image_url = value;
+                Edited();
+            }
+            get
+            {
+                return this.image_url;
+            }
+        }
+
+        /// <summary>
         /// 全ての本をデータベースから取得
         /// </summary>
         /// <returns>取得した本のデータをBookのリストで返す</returns>
@@ -167,6 +207,42 @@ namespace LibraryManagementSystem.Models
                             reader["author"].ToString(),
                             reader["publisher"].ToString(),
                             reader["series"].ToString(),
+                            reader["caption"].ToString(),
+                            reader["image_url"].ToString(),
+                            reader["created_at"].ToString(),
+                            reader["edited_at"].ToString()
+                            );
+                        book.Show();
+                        result.Add(book);
+                    }
+                }
+                cn.Close();
+            }
+            return result;
+        }
+
+        public static List<Book> FindFromIsbn(string _isbn)
+        {
+            List<Book> result = new List<Book>();
+            using (SQLiteConnection cn = new SQLiteConnection(dbConStr))
+            {
+                cn.Open();
+                SQLiteCommand cmd = cn.CreateCommand();
+                cmd.CommandText = @"SELECT * FROM " + TABLE_NAME + @" WHERE isbn = @ISBN;";
+                cmd.Parameters.Add(new SQLiteParameter("@ISBN", _isbn));
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Book book = new Book(
+                            reader["id"].ToString(),
+                            reader["isbn"].ToString(),
+                            reader["title"].ToString(),
+                            reader["author"].ToString(),
+                            reader["publisher"].ToString(),
+                            reader["series"].ToString(),
+                            reader["caption"].ToString(),
+                            reader["image_url"].ToString(),
                             reader["created_at"].ToString(),
                             reader["edited_at"].ToString()
                             );
@@ -197,14 +273,16 @@ namespace LibraryManagementSystem.Models
                 SQLiteCommand cmd = cn.CreateCommand();
                 cmd.CommandText = 
                     "INSERT INTO "
-                    + TABLE_NAME + " (isbn, title, author, publisher, series, created_at, edited_at) " 
-                    + "VALUES (@ISBN, @TITLE, @AUTHOR, @PUBLISHER, @SERIES, DATETIME('now'), DATETIME('now'))";
+                    + TABLE_NAME + " (isbn, title, author, publisher, series, caption, image_url, created_at, edited_at) " 
+                    + "VALUES (@ISBN, @TITLE, @AUTHOR, @PUBLISHER, @SERIES, @CAPTION, @IMAGE_URL, DATETIME('now'), DATETIME('now'))";
 
                 cmd.Parameters.Add(new SQLiteParameter("@ISBN", book.Isbn));
                 cmd.Parameters.Add(new SQLiteParameter("@TITLE", book.Title));
                 cmd.Parameters.Add(new SQLiteParameter("@AUTHOR", book.Author));
                 cmd.Parameters.Add(new SQLiteParameter("@PUBLISHER", book.Publisher));
                 cmd.Parameters.Add(new SQLiteParameter("@SERIES", book.Series));
+                cmd.Parameters.Add(new SQLiteParameter("@CAPTION", book.Caption));
+                cmd.Parameters.Add(new SQLiteParameter("@IMAGE_URL", book.ImageUrl));
                 cmd.ExecuteNonQuery();
                 cn.Close();
             }
@@ -228,6 +306,8 @@ namespace LibraryManagementSystem.Models
                     title = item.title,
                     author = item.author,
                     publisher = item.publisherName,
+                    caption = item.itemCaption,
+                    image_url = item.largeImageUrl,
                 });
             }
             return books;
@@ -253,6 +333,14 @@ namespace LibraryManagementSystem.Models
             if (publisher != null)
             {
                 Console.WriteLine("Publisher: " + publisher);
+            }
+            if (caption != null)
+            {
+                Console.WriteLine("Caption: " + caption);
+            }
+            if (caption != null)
+            {
+                Console.WriteLine("Image URL: " + image_url);
             }
         }
     }
