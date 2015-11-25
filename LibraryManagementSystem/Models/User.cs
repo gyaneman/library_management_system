@@ -125,13 +125,14 @@ namespace LibraryManagementSystem.Models
         /// </summary>
         /// <param name="user">保存するユーザデータ</param>
         /// <returns></returns>
-        public static Result Save(User user)
+        public static User Save(User user)
         {
             if (user.name == null || user.hashedPassword == null || user.email == null)
             {
-                return Result.Failed;
+                return null;
             }
 
+            User newUser = null;
             using (SQLiteConnection cn = new SQLiteConnection(dbConStr))
             {
                 cn.Open();
@@ -145,9 +146,19 @@ namespace LibraryManagementSystem.Models
                 cmd.Parameters.Add(new SQLiteParameter("@EMAIL", user.email));
                 cmd.Parameters.Add(new SQLiteParameter("@PASSWORD", user.hashedPassword));
                 cmd.ExecuteNonQuery();
+                cmd.CommandText =
+                    "SELECT id FROM user WHERE name = @NAME;";
+                cmd.Parameters.Add(new SQLiteParameter("@Name", user.name));
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        newUser = new User(reader["id"].ToString(), user.name, user.email, user.hashedPassword, null, null);
+                    }
+                }
                 cn.Close();
             }
-            return Result.Success;
+            return newUser;
         }
 
         /// <summary>
