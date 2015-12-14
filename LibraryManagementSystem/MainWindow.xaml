@@ -24,7 +24,7 @@
                 <Button Content="2" Style="{DynamicResource CaptionButtonStyleKey}" Click="NormalizationButton_Click" />
                 <Button Content="r" Style="{DynamicResource CaptionButtonStyleKey}" Click="ExitButton_Click"/>
             </StackPanel>
-            <DataGrid x:Name="dataGrid" HorizontalAlignment="Stretch" Margin="169,28,10,0" VerticalAlignment="Top" Height="480" Width="Auto" ItemsSource="{Binding Path=books}" AutoGenerateColumns="False" MouseDoubleClick="dataGrid_MouseDoubleClick">
+            <DataGrid x:Name="dataGrid" HorizontalAlignment="Stretch" Margin="169,28,10,10" VerticalAlignment="Stretch" Height="Auto"  Width="Auto" ItemsSource="{Binding Path=books}" AutoGenerateColumns="False" MouseDoubleClick="dataGrid_MouseDoubleClick">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}" IsReadOnly="True" Width="300" />
                     <DataGridTextColumn Header="Author" Binding="{Binding Author}" IsReadOnly="True" Width="150" />
