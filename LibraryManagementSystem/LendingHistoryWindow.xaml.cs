@@ -47,11 +47,11 @@ namespace LibraryManagementSystem
         private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var lendingRecord = this.dataGrid.SelectedItem as LendingHistoryRecord;
-            lendingRecord.Return();
             if (lendingRecord == null)
             {
                 return;
             }
+            lendingRecord.Return();
 
             if (MessageBox.Show(
                 "Are you shure you want to return this book?",
