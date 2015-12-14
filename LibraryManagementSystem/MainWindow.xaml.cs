@@ -40,6 +40,7 @@ namespace LibraryManagementSystem
         public MainWindow()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += (sender, e) => this.DragMove();
             var books = Book.GetAllBooks();
             booksToBeDisplayed = new ObservableCollection<Book>(books);
             this.dataGrid.ItemsSource = booksToBeDisplayed;
@@ -135,6 +136,26 @@ namespace LibraryManagementSystem
             var book = (Book)this.dataGrid.SelectedItem as Book;
             var bookDetailsWindow = new BookDetailsWindow(book, currentUser);
             bookDetailsWindow.ShowDialog();
+        }
+
+        private void MinimizationButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void MaximizationButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Maximized;
+        }
+
+        private void NormalizationButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Normal;
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
