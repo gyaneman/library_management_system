@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="MainWindow" Height="555.0" Width="854" MinHeight="555.0" MinWidth="645.0">
+        Title="MainWindow" Height="555.0" Width="854" MinHeight="555.0" MinWidth="645.0" Icon="Resources/1450144979_Book.ico">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="{x:Static SystemParameters.CaptionHeight}"
                       ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"

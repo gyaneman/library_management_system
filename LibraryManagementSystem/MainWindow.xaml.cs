@@ -40,6 +40,7 @@ namespace LibraryManagementSystem
         public MainWindow()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += (sender, e) => this.DragMove();
             var books = Book.GetAllBooks();
             booksToBeDisplayed = new ObservableCollection<Book>(books);
             this.dataGrid.ItemsSource = booksToBeDisplayed;
