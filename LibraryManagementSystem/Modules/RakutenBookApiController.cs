@@ -32,10 +32,14 @@ namespace LibraryManagementSystem.Modules
                 req.Method = "GET";
                 req.ContentType = "application/json";
                 var res = req.GetResponse();
+                if (((HttpWebResponse)res).StatusCode != HttpStatusCode.OK)
+                {
+                    return default(Type);
+                }
                 var serializer = new JsonSerializer();
                 return serializer.Deserialize<Type>(new JsonTextReader(new StreamReader(res.GetResponseStream())));
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return default(Type);
             }
