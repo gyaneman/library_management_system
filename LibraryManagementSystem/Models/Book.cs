@@ -298,18 +298,22 @@ namespace LibraryManagementSystem.Models
         {
             List<Book> books = new List<Book>();
             RakutenBook response = RakutenBookApiController.GetBookDataFromIsbn<RakutenBook>(_isbn);
-            foreach(RakutenBook.Item item in response.Items)
+            if (response != default(RakutenBook))
             {
-                books.Add(new Book
+                foreach (RakutenBook.Item item in response.Items)
                 {
-                    isbn = item.isbn,
-                    title = item.title,
-                    author = item.author,
-                    publisher = item.publisherName,
-                    caption = item.itemCaption,
-                    image_url = item.largeImageUrl,
-                });
+                    books.Add(new Book
+                    {
+                        isbn = item.isbn,
+                        title = item.title,
+                        author = item.author,
+                        publisher = item.publisherName,
+                        caption = item.itemCaption,
+                        image_url = item.largeImageUrl,
+                    });
+                }
             }
+            
             return books;
         }
 
