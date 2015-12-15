@@ -5,10 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="Please enter your password." Height="109.536" Width="300">
-    <Grid Height="77" VerticalAlignment="Top">
-        <PasswordBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" VerticalAlignment="Top" Width="272" MaxLength="32"/>
-        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="45,46,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.237,-0.425" IsCancel="True" Focusable="False"/>
-        <Button x:Name="LoginButton" Content="OK" HorizontalAlignment="Left" Margin="163,46,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="LoginButton_Click"/>
-    </Grid>
+        Title="Please enter your password." Height="195.335" Width="310.665" ResizeMode="NoResize">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"
+                      ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
+                      UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <ResourceDictionary Source="Style.xaml" />
+    </Window.Resources>
+    <Border BorderBrush="Gray" BorderThickness="1" Margin="0,0,0,0">
+        <Grid Margin="-1"  VerticalAlignment="Top" Height="166.335">
+            <StackPanel Orientation="Horizontal" Margin="5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top">
+                <Button Content="r" Style="{DynamicResource CaptionButtonStyleKey}" Click="ExitButton_Click"/>
+            </StackPanel>
+            <PasswordBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Margin="10,54.146,0,0" Width="284.665" MaxLength="32" Height="22.239" VerticalAlignment="Top"/>
+            <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="48.999,111.038,0,0" Width="75" IsCancel="True" Focusable="False" Height="19.24" VerticalAlignment="Top"/>
+            <Button x:Name="LoginButton" Content="OK" HorizontalAlignment="Left" Margin="175.665,111.038,0,0" Width="75" IsDefault="True" Click="LoginButton_Click" VerticalAlignment="Top"/>
+            <Label x:Name="label" Content="Please enter your password.&#xD;&#xA;" Margin="10,10,38.667,0" Height="26.48" VerticalAlignment="Top"/>
+        </Grid>
+    </Border>
 </Window>

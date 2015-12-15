@@ -5,16 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="UserList" Height="300" Width="500">
-    <Grid>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Stretch" Margin="10,10,10,0" VerticalAlignment="Top" Height="203" Width="Auto" ItemsSource="{Binding Path=users}" AutoGenerateColumns="False" MouseDoubleClick="dataGrid_MouseDoubleClick">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="150"/>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True" Width="Auto"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="ButtonCreationNewAccount" Content="CreateNewAccount" HorizontalAlignment="Left" Margin="21,232,0,0" VerticalAlignment="Top" Width="128" Click="ButtonCreationNewAccount_Click"/>
+        Title="UserList" Height="256" Width="494" ResizeMode="CanResizeWithGrip">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"
+                      ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
+                      UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <ResourceDictionary Source="Style.xaml" />
+    </Window.Resources>
+    <Border BorderBrush="Gray" BorderThickness="1">
+        <Grid>
+            <StackPanel Orientation="Horizontal" Margin="5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top">
+                <Button Content="0" Style="{DynamicResource CaptionButtonStyleKey}" Click="MinimizationButton_Click" />
+                <Button Content="1" Style="{DynamicResource CaptionButtonStyleKey}" Click="MaximizationButton_Click" />
+                <Button Content="2" Style="{DynamicResource CaptionButtonStyleKey}" Click="NormalizationButton_Click" />
+                <Button Content="r" Style="{DynamicResource CaptionButtonStyleKey}" Click="ExitButton_Click"/>
+            </StackPanel>
+            <DataGrid x:Name="dataGrid" HorizontalAlignment="Stretch" Margin="10,40.921,10,10" VerticalAlignment="Stretch" Height="Auto" Width="Auto" ItemsSource="{Binding Path=users}" AutoGenerateColumns="False" MouseDoubleClick="dataGrid_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" Width="150"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True" Width="Auto"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="ButtonCreationNewAccount" Content="CreateNewAccount" HorizontalAlignment="Left" Margin="25,16.681,0,0" VerticalAlignment="Top" Width="128" Click="ButtonCreationNewAccount_Click" d:LayoutOverrides="VerticalAlignment"/>
 
-    </Grid>
+        </Grid>
+    </Border>
 </Window>
