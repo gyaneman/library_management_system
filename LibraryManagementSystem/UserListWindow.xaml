@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="UserList" Height="256" Width="494" ResizeMode="CanResizeWithGrip">
+        Title="UserList" Height="256" Width="494" ResizeMode="CanResizeWithGrip"
+        WindowStyle="None"
+        AllowsTransparency="True">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"
                       ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
@@ -31,7 +33,7 @@
                     <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True" Width="Auto"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="ButtonCreationNewAccount" Content="CreateNewAccount" HorizontalAlignment="Left" Margin="25,16.681,0,0" VerticalAlignment="Top" Width="128" Click="ButtonCreationNewAccount_Click" d:LayoutOverrides="VerticalAlignment"/>
+            <Button x:Name="ButtonCreationNewAccount" Content="Register" HorizontalAlignment="Left" Margin="25,16.681,0,0" VerticalAlignment="Top" Width="128" Click="ButtonCreationNewAccount_Click" d:LayoutOverrides="VerticalAlignment"/>
 
         </Grid>
     </Border>

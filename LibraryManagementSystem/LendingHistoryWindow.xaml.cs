@@ -55,7 +55,7 @@ namespace LibraryManagementSystem
 
             if (MessageBox.Show(
                 "Are you shure you want to return this book?",
-                "Return book", 
+                "Return book",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question,
                 MessageBoxResult.Yes
@@ -67,6 +67,38 @@ namespace LibraryManagementSystem
                     MessageBox.Show("Return procedure was completed. Thank you!!", "Completed", MessageBoxButton.OK);
                 }
             }
+        }
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.DragMove();
+            }
+            catch (System.InvalidOperationException)
+            {
+                Console.WriteLine("UserListWindow: Error");
+            }
+        }
+
+        private void MinimizationButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void MaximizationButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Maximized;
+        }
+
+        private void NormalizationButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Normal;
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

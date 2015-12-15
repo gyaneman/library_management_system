@@ -40,8 +40,6 @@ namespace LibraryManagementSystem
         {
             if (this.textBoxTitle.Text == string.Empty)
             {
-                this.labelWarningTitle.Content = "Please enter title.";
-                this.labelWarningTitle.Visibility = Visibility.Visible;
                 return;
             }
             var newBook = new Book();
@@ -100,6 +98,23 @@ namespace LibraryManagementSystem
                 Console.WriteLine("================");
                 book.Show();
             }
+        }
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.DragMove();
+            }
+            catch (System.InvalidOperationException)
+            {
+                Console.WriteLine("UserListWindow: Error");
+            }
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

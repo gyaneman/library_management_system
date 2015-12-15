@@ -40,12 +40,11 @@ namespace LibraryManagementSystem
         public MainWindow()
         {
             InitializeComponent();
-            this.MouseLeftButtonDown += (sender, e) => this.DragMove();
             var books = Book.GetAllBooks();
             booksToBeDisplayed = new ObservableCollection<Book>(books);
             this.dataGrid.ItemsSource = booksToBeDisplayed;
         }
-        
+
         public void UpdateDataGrid()
         {
             booksToBeDisplayed = new ObservableCollection<Book>(Book.GetAllBooks());
@@ -133,9 +132,27 @@ namespace LibraryManagementSystem
         /// <param name="e"></param>
         private void dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var book = (Book)this.dataGrid.SelectedItem as Book;
+            var book = this.dataGrid.SelectedItem as Book;
+            if (book == null)
+            {
+                return;
+            }
             var bookDetailsWindow = new BookDetailsWindow(book, currentUser);
             bookDetailsWindow.ShowDialog();
+        }
+
+
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.DragMove();
+            }
+            catch (System.InvalidOperationException)
+            {
+                Console.WriteLine("UserListWindow: Error");
+            }
         }
 
         private void MinimizationButton_Click(object sender, RoutedEventArgs e)
