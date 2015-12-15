@@ -20,6 +20,6 @@
         <Button x:Name="buttonRental" Content="Borrow This" HorizontalAlignment="Left" Margin="383,215,0,0" VerticalAlignment="Top" Width="117" Height="115" Click="buttonRental_Click"/>
         <Image x:Name="imageBox" HorizontalAlignment="Left" Height="200" Margin="316,10,0,0" VerticalAlignment="Top" Width="200"/>
         <Label x:Name="labelCaption" Content="Caption" HorizontalAlignment="Left" Margin="28,143,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBlock x:Name="textBlockCaptionContent" Text="{Binding Caption}" HorizontalAlignment="Left" Margin="61,173,0,0" VerticalAlignment="Top" Height="116" Width="250" TextWrapping="Wrap"/>
+        <TextBlock x:Name="textBlockCaptionContent" Text="{Binding Caption}" HorizontalAlignment="Left" Margin="61,173,0,0" VerticalAlignment="Top" Height="116" Width="250" TextWrapping="Wrap" Background="#FFF0F0F0"/>
     </Grid>
 </Window>
