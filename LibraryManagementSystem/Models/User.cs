@@ -147,13 +147,21 @@ namespace LibraryManagementSystem.Models
                 cmd.Parameters.Add(new SQLiteParameter("@PASSWORD", user.hashedPassword));
                 cmd.ExecuteNonQuery();
                 cmd.CommandText =
-                    "SELECT id FROM user WHERE name = @NAME;";
+                    "SELECT * FROM user WHERE ROWID = last_insert_rowid();";
                 cmd.Parameters.Add(new SQLiteParameter("@Name", user.name));
                 using (SQLiteDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        newUser = new User(reader["id"].ToString(), user.name, user.email, user.hashedPassword, null, null);
+                        newUser = new User(
+                            reader["id"].ToString(),
+                            reader["name"].ToString(),
+                            reader["email"].ToString(),
+                            reader["password"].ToString(),
+                            reader["created_at"].ToString(),
+                            reader["edited_at"].ToString()
+                            );
+                        newUser.Show();
                     }
                 }
                 cn.Close();
