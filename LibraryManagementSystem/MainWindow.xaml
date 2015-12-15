@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="555.0" Width="854" MinHeight="555.0" MinWidth="645.0" Icon="Resources/1450144979_Book.ico">
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="{x:Static SystemParameters.CaptionHeight}"
+        <WindowChrome CaptionHeight="0"
                       ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
                       UseAeroCaptionButtons="False"/>
     </WindowChrome.WindowChrome>
@@ -33,7 +33,7 @@
             </DataGrid>
             <Button x:Name="OpenBookCreationWindowButton" Content="New Book" HorizontalAlignment="Left" Margin="40,252,0,0" VerticalAlignment="Top" Width="102" Click="OpenBookCreationWindowButton_Click" Height="56"/>
             <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Margin="40,84,0,0" VerticalAlignment="Top" Width="102" Click="LoginButton_Click" Height="30" d:LayoutOverrides="VerticalAlignment"/>
-            <Label x:Name="labelUserName" Content="Guest" HorizontalAlignment="Left" Margin="10,468,0,0" VerticalAlignment="Top" Height="46" Width="262" FontSize="29.333" FontWeight="Bold"/>
+            <Label x:Name="labelUserName" Content="Guest" HorizontalAlignment="Left" Margin="10,15.28,0,0" VerticalAlignment="Top" Height="42.783" Width="154" FontSize="24" FontWeight="Bold" d:LayoutOverrides="VerticalAlignment"/>
             <Button x:Name="lendingHistoryButton" Content="Lending History" HorizontalAlignment="Left" Margin="40,158.667,0,0" VerticalAlignment="Top" Width="102" Height="37" Click="lendingHistoryButton_Click" IsEnabled="False" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
 
         </Grid>

@@ -35,6 +35,7 @@ namespace LibraryManagementSystem
         public LoginWindow()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += (sender, e) => this.DragMove();
         }
 
         /// <summary>
@@ -58,6 +59,11 @@ namespace LibraryManagementSystem
                 System.Media.SystemSounds.Beep.Play();
                 this.PasswordTextBox.Password = "";
             }
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
