@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryManagementSystem"
         mc:Ignorable="d"
-        Title="UserList" Height="256" Width="494">
+        Title="UserList" Height="256" Width="494" ResizeMode="CanResizeWithGrip">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"
                       ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"
