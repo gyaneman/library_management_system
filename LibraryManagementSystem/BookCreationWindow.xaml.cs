@@ -102,7 +102,14 @@ namespace LibraryManagementSystem
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
-            this.DragMove();
+            try
+            {
+                this.DragMove();
+            }
+            catch (System.InvalidOperationException)
+            {
+                Console.WriteLine("UserListWindow: Error");
+            }
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

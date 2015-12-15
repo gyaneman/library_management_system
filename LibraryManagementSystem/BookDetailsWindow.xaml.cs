@@ -110,5 +110,15 @@ namespace LibraryManagementSystem
             this.dueDateContent = _content;
             this.buttonRental.IsEnabled = false;
         }
+
+        private void NormalizationButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Normal;
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

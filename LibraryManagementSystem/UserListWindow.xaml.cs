@@ -44,15 +44,12 @@ namespace LibraryManagementSystem
         public UserListWindow()
         {
             InitializeComponent();
-            // if (this.IsActive)
-            // this.MouseLeftButtonDown += (sender, e) => this.DragMove();
-            this.MouseLeftButtonDown += new MouseButtonEventHandler(MyDragMouse);
             var users = User.GetAllUsers();
             usersToBeDisplayed = new ObservableCollection<User>(users);
             this.dataGrid.ItemsSource = usersToBeDisplayed;
         }
 
-        void MyDragMouse(object sender, EventArgs e)
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             try
             {
@@ -61,7 +58,6 @@ namespace LibraryManagementSystem
             catch (System.InvalidOperationException)
             {
                 Console.WriteLine("UserListWindow: Error");
-                //this.Close();
             }
         }
 

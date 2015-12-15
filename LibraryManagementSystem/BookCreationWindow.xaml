@@ -32,7 +32,7 @@
             <Button x:Name="buttonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="369.336,132,0,0" VerticalAlignment="Top" Width="47.72" Click="buttonCancel_Click" Height="19" d:LayoutOverrides="VerticalAlignment" Background="{x:Null}" Foreground="#FF51C9F5" Padding="0" BorderThickness="0" ScrollViewer.CanContentScroll="True"/>
             <Image x:Name="imageBox" HorizontalAlignment="Left" Height="218.997" Margin="333,162.24,0,0" VerticalAlignment="Top" Width="211.496"/>
             <Label x:Name="labelCaption" Content="Caption" HorizontalAlignment="Left" Margin="27,132,0,0" VerticalAlignment="Top" Width="76"/>
-            <TextBlock x:Name="textBoxCaption" HorizontalAlignment="Left" Margin="66,162.24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="218.997" Width="256" Background="WhiteSmoke"/>
+            <TextBox x:Name="textBoxCaption" HorizontalAlignment="Left" Margin="66,162.24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="218.997" Width="256" Background="WhiteSmoke"/>
         </Grid>
     </Border>
 </Window>
