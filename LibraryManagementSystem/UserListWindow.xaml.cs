@@ -44,6 +44,7 @@ namespace LibraryManagementSystem
         public UserListWindow()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += (sender, e) => this.DragMove();
             var users = User.GetAllUsers();
             usersToBeDisplayed = new ObservableCollection<User>(users);
             this.dataGrid.ItemsSource = usersToBeDisplayed;
