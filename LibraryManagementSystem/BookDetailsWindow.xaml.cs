@@ -111,6 +111,18 @@ namespace LibraryManagementSystem
             this.buttonRental.IsEnabled = false;
         }
 
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            try
+            {
+                this.DragMove();
+            }
+            catch (System.InvalidOperationException)
+            {
+                Console.WriteLine("UserListWindow: Error");
+            }
+        }
+
         private void NormalizationButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Normal;
