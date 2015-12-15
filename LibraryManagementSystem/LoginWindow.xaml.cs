@@ -51,8 +51,8 @@ namespace LibraryManagementSystem
             }
             if (requestUser.CheckPassword(this.PasswordTextBox.Password))
             {
-                successfulLoginDelegate();
                 this.Close();
+                successfulLoginDelegate();
             } 
             else
             {
